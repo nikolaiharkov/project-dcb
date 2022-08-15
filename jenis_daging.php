@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -75,10 +75,10 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="importir.html">Importir</a>
-                        <a class="collapse-item" href="merek.html">Merek</a>
-                        <a class="collapse-item" href="jenis_daging.html">Jenis daging</a>
-                        <a class="collapse-item" href="data_barang.html">Data barang</a>
+                        <a class="collapse-item" href="importir.php">Importir</a>
+                        <a class="collapse-item" href="merek.php">Merek</a>
+                        <a class="collapse-item" href="jenis_daging.php">Jenis daging</a>
+                        <a class="collapse-item" href="data_barang.php">Data barang</a>
                     </div>
                 </div>
             </li>
@@ -164,11 +164,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Data barang</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Jenis daging</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data barang</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data jenis daging</h6>
                             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-plus"></i>
@@ -182,10 +182,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama pengimpor</th>
-                                            <th>Merek</th>
                                             <th>Jenis daging</th>
-                                            <th>Berat daging</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -193,9 +190,6 @@
                                     <tbody>
                                         <tr>
                                             <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>System Architect</td>
-                                            <td>System Architect</td>
                                             <td>System Architect</td>
                                             <td class="d-flex flex-row">
                                                 <a href="" class="btn btn-warning btn-sm mr-3">
@@ -240,7 +234,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Data barang</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">jenis daging</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -248,26 +242,14 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nama pengimpor</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Merek</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Jenis daging</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Berat daging</label>
                                 <input type="text" class="form-control" id="recipient-name">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
             </div>
