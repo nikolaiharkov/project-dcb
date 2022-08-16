@@ -104,7 +104,6 @@
 
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -178,17 +177,12 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Merek daging</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Freezer storage</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data merek daging</h6>
-                            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <span class="text">Tambah Data</span>
-                            </a>
+                            <h6 class="m-0 font-weight-bold text-primary">Data freezer storage</h6>
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -196,8 +190,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Merek daging</th>
-                                            <th>Action</th>
+                                            <th>Nama</th>
+                                            <th>Berat (kg)</th>
 
                                         </tr>
                                     </thead>
@@ -205,6 +199,28 @@
                                         <tr>
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
+                                            <td>System Architect</td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Pengimpor</th>
+                                            <th>Action</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
                                             <td class="d-flex flex-row">
                                                 <a href="" class="btn btn-warning btn-sm mr-3">
                                                     <i class="fas fa-edit"></i> Edit
@@ -213,12 +229,12 @@
                                                     <i class="fas fa-trash"></i> Hapus
                                                 </a>
                                             </td>
-
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
                                         </tr>
-
                                     </tbody>
-                                </table>
 
+                                </table> -->
                             </div>
                         </div>
                     </div>
@@ -241,33 +257,6 @@
 
         </div>
         <!-- End of Content Wrapper -->
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Merek daging</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Merek daging</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
     <!-- End of Page Wrapper -->
