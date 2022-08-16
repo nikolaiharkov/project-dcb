@@ -66,6 +66,12 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="produksi.php">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Produksi</span></a>
+            </li>
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

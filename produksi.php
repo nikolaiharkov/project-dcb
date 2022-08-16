@@ -27,7 +27,6 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -96,6 +95,7 @@
 
         </ul>
         <!-- End of Sidebar -->
+
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -170,11 +170,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Jenis daging</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Produksi</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data jenis daging</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data produksi</h6>
                             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-plus"></i>
@@ -188,7 +188,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Jenis daging</th>
+                                            <th>Nama</th>
+                                            <th>Berat (kg)</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -197,6 +198,36 @@
                                         <tr>
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
+                                            <td>System Architect</td>
+                                            <td class="d-flex flex-row">
+                                                <a href="" class="btn btn-success btn-sm mr-3">
+                                                    <i class="fa-regular fa-xmark"></i> Approve
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-close"></i> Reject
+                                                </a>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Pengimpor</th>
+                                            <th>Action</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
                                             <td class="d-flex flex-row">
                                                 <a href="" class="btn btn-warning btn-sm mr-3">
                                                     <i class="fas fa-edit"></i> Edit
@@ -205,12 +236,12 @@
                                                     <i class="fas fa-trash"></i> Hapus
                                                 </a>
                                             </td>
-
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
                                         </tr>
-
                                     </tbody>
-                                </table>
 
+                                </table> -->
                             </div>
                         </div>
                     </div>
@@ -240,7 +271,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">jenis daging</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Nama</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -248,7 +279,11 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Jenis daging</label>
+                                <label for="recipient-name" class="col-form-label">Nama</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Berat (kg)</label>
                                 <input type="text" class="form-control" id="recipient-name">
                             </div>
                         </form>
