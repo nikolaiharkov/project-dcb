@@ -11,16 +11,15 @@
 
     <title>SB Admin 2 - Blank</title>
 
-
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -28,7 +27,6 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -45,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="../index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -64,14 +62,15 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="cold storage/importir.php">Importir</a>
-                        <a class="collapse-item" href="cold storage/merek.php">Merek</a>
-                        <a class="collapse-item" href="cold storage/jenis_daging.php">Jenis daging</a>
-                        <a class="collapse-item" href="cold storage/data_barang.php">Data barang</a>
+                        <a class="collapse-item" href="importir.php">Importir</a>
+                        <a class="collapse-item" href="merek.php">Merek</a>
+                        <a class="collapse-item" href="jenis_daging.php">Jenis daging</a>
+                        <a class="collapse-item" href="data_barang.php">Data barang</a>
 
                     </div>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -80,8 +79,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="produksi/produksi.php">Data produksi</a>
-                        <a class="collapse-item" href="produksi/jenis_produksi.php">Jenis produksi</a>
+                        <a class="collapse-item" href="../produksi/produksi.php">Data produksi</a>
+                        <a class="collapse-item" href="../produksi/jenis_produksi.php">Jenis produksi</a>
                     </div>
                 </div>
             </li>
@@ -89,7 +88,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="freezer/freezer_storage.php">
+                <a class="nav-link" href="../freezer/freezer_storage.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Freezer storage</span></a>
             </li>
@@ -116,8 +115,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -143,7 +140,6 @@
 
 
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -176,85 +172,19 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total stock cold storage</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">120kg</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total stock freezer storage</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">50kg</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Sisa stock freezer storage</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10kg</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Sisa stock cold storage</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">15kg</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <h1 class="h3 mb-2 text-gray-800">Sisa assets cold storage</h1>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Importir</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data barang</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data pengimpor</h6>
+                            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                                <span class="text">Tambah Data</span>
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -262,11 +192,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama barang</th>
-                                            <th>Merek</th>
-                                            <th>Jenis daging</th>
-                                            <th>Sisa stock</th>
-
+                                            <th>Nama pengimpor</th>
+                                            <th>Action</th>
 
                                         </tr>
                                     </thead>
@@ -274,9 +201,14 @@
                                         <tr>
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
-                                            <td>System Architect</td>
-                                            <td>System Architect</td>
-                                            <td>System Architect</td>
+                                            <td class="d-flex flex-row">
+                                                <a href="" class="btn btn-warning btn-sm mr-3">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i> Hapus
+                                                </a>
+                                            </td>
 
                                         </tr>
 
@@ -286,40 +218,6 @@
                             </div>
                         </div>
                     </div>
-                    <h1 class="h3 mb-2 text-gray-800">Sisa assets freezer storage</h1>
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data barang</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama barang</th>
-
-
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-
-
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-
-
 
                 </div>
                 <!-- /.container-fluid -->
@@ -342,6 +240,34 @@
 
         </div>
         <!-- End of Content Wrapper -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nama pengimpor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nama pengimpor</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- End of Page Wrapper -->
@@ -371,21 +297,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="../js/demo/datatables-demo.js"></script>
 
 </body>
 
