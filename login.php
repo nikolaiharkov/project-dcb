@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>DCB - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,25 +39,21 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">DCB Management System</h1>
                                     </div>
-                                    <form class="user" action="proses-login.php">
+                                    <!-- form action proses-login.php method post class user -->
+                                    <form action="proses-login.php" method="post" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="username" aria-describedby="emailHelp" placeholder="masukkan username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="masukkan Password">
                                         </div>
-                                        <div class="form-group">
-                                            <!-- create select option for admin, inventory, POS -->
-                                            <select name="level" class="form-control form-control-user">
-                                                <option value="admin">admin</option>
-                                                <option value="inventory">inventory</option>
-                                                <option value="POS">POS</option>
-                                            </select>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <select class="form-control select" id="exampleFormControlSelect1">
-                                                <option>Admin</option>
-                                                <option>Pegawai</option>
+                                                <!-- create option for admin, inventory and POS -->
+                                                <option value="admin">Admin</option>
+                                                <option value="inventory">Inventory</option>
+                                                <option value="POS">POS</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

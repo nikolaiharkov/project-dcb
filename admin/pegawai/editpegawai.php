@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php 
-include '../database.php';
+<?php
+include '../../database.php';
 ?>
 <html lang="en">
 
@@ -16,14 +16,14 @@ include '../database.php';
 
 
     <!-- Custom fonts for this template-->
-    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -49,21 +49,30 @@ include '../database.php';
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="../index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
+            
 
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pegawai/index.php">
+                <a class="nav-link collapsed" href="index.php">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Data Pegawai & Admin</span>
                 </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="cold storage/importir.php">Index</a>
+
+
+                    </div>
+                </div>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -149,75 +158,46 @@ include '../database.php';
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <h1 class="h3 mb-2 text-gray-800">Selamat Datang di Dashboard Admin</h1>
 
-                    <div class="row">
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Edit Pegawai</h1>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4 p-3">
+                        <!-- create form action proseseditpegawai.php method post -->
+                        <form action="proseseditpegawai.php" method="post">
+                            <?php
+                            //get id
+                            $id = $_GET['id'];
+                            //get data from userpegawaitable
+                            $query = "SELECT * FROM userpegawai WHERE id = $id";
+                            $result = mysqli_query($db, $query);
+                            $row = mysqli_fetch_assoc($result);
+                            //input text with label username
+                            echo "<div class='form-group'>";
+                            
+                            echo "<input type='text' class='form-control' id='id' name='id' value='$row[id]' hidden>";
+                            echo "</div>";
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Jumlah pegawai</div>
-                                            <?php
-                                            //sum all data from table userpegawai
-                                            //show
-                                            $query = "SELECT COUNT(*) AS jumlah FROM userpegawai";
-                                            $result = mysqli_query($db, $query);
-                                            $row = mysqli_fetch_assoc($result);
-                                            $jumlah = $row['jumlah'];
-                                            //show
-                                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>$jumlah</div>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='username'>Username</label>";
+                            echo "<input type='text' class='form-control' id='username' name='username' value='$row[username]' readonly>";
+                            echo "</div>";
+                            //input password with label password
+                            echo "<div class='form-group'>";
+                            echo "<label for='password'>Password</label>";
+                            echo "<input type='password' class='form-control' id='password' name='password' value='' required>";
+                            echo "</div>";
 
-
-                                            ?>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Jumlah Admin</div>
-                                            <?php
-                                            //sum all data from table userpegawai
-                                            //show
-                                            $query = "SELECT COUNT(*) AS jumlah FROM useradmin";
-                                            $result = mysqli_query($db, $query);
-                                            $row = mysqli_fetch_assoc($result);
-                                            $jumlah = $row['jumlah'];
-                                            //show
-                                            echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>$jumlah</div>";
-                                            
-
-                                            ?>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
+                            //create submit button
+                            echo "<button type='submit' class='btn btn-primary'>Submit</button>";
+                            ?>
+                        </form>
+                            
                     </div>
 
-
-
-
                 </div>
+
+                
                 <!-- /.container-fluid -->
 
             </div>
@@ -227,7 +207,7 @@ include '../database.php';
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
+                        <span>Copyright &copy; <a href="http://harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
@@ -238,39 +218,7 @@ include '../database.php';
 
         </div>
         <!-- End of Content Wrapper -->
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah pegawai</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#">
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nama pengawai</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Role</label>
-                                <select class="form-control select" id="exampleFormControlSelect1">
-                                    <option>Admin</option>
-                                    <option>Pegawai</option>
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+       
 
 
     </div>
@@ -301,21 +249,21 @@ include '../database.php';
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../assets/js/sb-admin-2.min.js"></script>
+    <script src="../../assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../assets/js/demo/datatables-demo.js"></script>
+    <script src="../../assets/js/demo/datatables-demo.js"></script>
 
 </body>
 

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include '../../database.php';
+?>
 <html lang="en">
 
 <head>
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>DCB - ADMIN</title>
 
 
     <!-- Custom fonts for this template-->
@@ -52,8 +55,7 @@
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+            
 
 
 
@@ -61,7 +63,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="index.php">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Data pegawai</span>
+                    <span>Data Pegawai & Admin</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -158,11 +160,11 @@
 
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Data pegawai</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Data Pegawai & Admin</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data pegawai</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Pegawai</h6>
                             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-plus"></i>
@@ -175,26 +177,84 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama pengawai</th>
+                                            
+                                            <th>Nama Pegawai</th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        //get data from table userpegawai
+                                        $query = "SELECT * FROM userpegawai";
+                                        $result = mysqli_query($db, $query);
+                                        while ($row = mysqli_fetch_array($result)) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row['username']; ?></td>
+                                                <td>
+                                                    <a href="editpegawai.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-circle btn-sm">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="hapuspegawai.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-circle btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                               
+
+                                       
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="container-fluid">
+
+
+                    <!-- Page Heading -->
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary">Data Admin</h6>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td class="d-flex flex-row">
-                                                <a href="" class="btn btn-warning btn-sm mr-3">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i> Hapus
-                                                </a>
-                                            </td>
+                                            
+                                            <th>Nama Admin</th>
+                                            <th>Action</th>
 
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        //get data from table useradmin
+                                        $query = "SELECT * FROM useradmin";
+                                        $result = mysqli_query($db, $query);
+                                        while ($row = mysqli_fetch_array($result)) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row['username']; ?></td>
+                                                <td>
+                                                    <a href="editadmin.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-circle btn-sm">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="hapusadmin.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-circle btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
 
                                     </tbody>
                                 </table>
@@ -213,7 +273,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
+                        <span>Copyright &copy; <a href="http://harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
@@ -229,22 +289,28 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah pegawai</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="#">
+                        <form action="tambahuser.php" method="post">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nama pengawai</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Username</label>
+                                <input type="text" class="form-control" id="recipient-name" name="username">
+                            </div>
+                            <!-- create input password -->
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Password</label>
+                                <input type="password" class="form-control" id="recipient-name" name="password">
                             </div>
                             <div class="form-group">
                                 <label for="">Role</label>
-                                <select class="form-control select" id="exampleFormControlSelect1">
-                                    <option>Admin</option>
-                                    <option>Pegawai</option>
+                                <select name="role" class="form-control select" id="exampleFormControlSelect1">
+                                    <!-- create option for admin and pegawai -->
+                                    <option value="admin">Admin</option>
+                                    <option value="pegawai">Pegawai</option>
                                 </select>
                             </div>
                             <div class="modal-footer">
