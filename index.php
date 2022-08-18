@@ -219,11 +219,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Sisa stock freezer storage</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10kg</div>
+                                                Nilai assets freezer storage</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 10.0000.000</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -236,11 +236,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Sisa stock cold storage</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">15kg</div>
+                                                Nilai assets cold storage</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.7.000.000</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
