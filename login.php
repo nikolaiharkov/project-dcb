@@ -47,6 +47,12 @@
                                             <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
+                                            <select class="form-control select" id="exampleFormControlSelect1">
+                                                <option>Admin</option>
+                                                <option>Pegawai</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Remember
