@@ -1,3 +1,7 @@
+<?php
+include '../../database.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>DCB - INVENTORY</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,10 +36,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                
+                <div class="sidebar-brand-text mx-3">DCB - INVENTORY</div>
             </a>
 
             <!-- Divider -->
@@ -167,11 +169,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Importir</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Data Importir</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data pengimpor</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Importir</h6>
                             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-plus"></i>
@@ -184,26 +186,38 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama pengimpor</th>
+                                            <th>Nama Importir</th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td class="d-flex flex-row">
-                                                <a href="" class="btn btn-warning btn-sm mr-3">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i> Hapus
-                                                </a>
-                                            </td>
-
-                                        </tr>
+                                        <?php
+                                        //get data from table dataimportir
+                                        $query = "SELECT * FROM dataimportir";
+                                        $result = mysqli_query($db, $query);
+                                        while ($row = mysqli_fetch_array($result)) {
+                                           //show nama
+                                           //create edit and delete table
+                                           //editimportir.php and deleteimportir.php
+                                             echo "<tr>";
+                                                echo "<td>" . $row['nama'] . "</td>";
+                                                echo "<td>";
+                                                echo "<a href='editimportir.php?id=" . $row['id'] . "' class='btn btn-warning btn-circle btn-sm'>";
+                                                echo "<span class='icon text-white-50'>";
+                                                echo "<i class='fas fa-edit'></i>";
+                                                echo "</span>";
+                                                echo "</a>";
+                                                echo "<a href='deleteimportir.php?id=" . $row['id'] . "' class='btn btn-danger btn-circle btn-sm'>";
+                                                echo "<span class='icon text-white-50'>";
+                                                echo "<i class='fas fa-trash'></i>";
+                                                echo "</span>";
+                                                echo "</a>";
+                                                echo "</td>";
+                                            echo "</tr>";
+                                            
+                                        }
+                                        ?>
 
                                     </tbody>
                                 </table>
@@ -240,16 +254,16 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nama pengimpor</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Input Importir</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="#">
+                        <form action="inputimportir.php" method="post">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nama pengimpor</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Nama Importir</label>
+                                <input type="text" name="namaimportir" class="form-control" id="recipient-name">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
