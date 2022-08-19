@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2022 at 12:58 PM
+-- Generation Time: Aug 19, 2022 at 04:16 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -35,9 +35,18 @@ CREATE TABLE `datacoldstorage` (
   `jenisdaging` varchar(30) NOT NULL,
   `qty` float NOT NULL,
   `hargadasar` float NOT NULL,
-  `hargaaset` double NOT NULL,
-  `operator` varchar(30) NOT NULL
+  `hargaaset` float NOT NULL,
+  `operator` varchar(30) NOT NULL,
+  `foto` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `datacoldstorage`
+--
+
+INSERT INTO `datacoldstorage` (`id`, `tanggalwaktu`, `importir`, `merek`, `jenisdaging`, `qty`, `hargadasar`, `hargaaset`, `operator`, `foto`) VALUES
+(15, '2022-08-19 21:10:02', 'daging jaya sukses maju', 'slice yoshinoya', 'BBQ', 15.5, 1000, 15500, 'niko', 'Hak Akses.jpg'),
+(16, '2022-08-19 21:10:25', 'Instagram', 'untaa', 'Rendang', 9.5, 5000, 47500, 'niko', 'ky1.png');
 
 -- --------------------------------------------------------
 
@@ -56,7 +65,8 @@ CREATE TABLE `dataimportir` (
 
 INSERT INTO `dataimportir` (`id`, `nama`) VALUES
 (1, 'Facebook'),
-(4, 'Instagram');
+(4, 'Instagram'),
+(5, 'daging jaya sukses maju');
 
 -- --------------------------------------------------------
 
@@ -74,7 +84,8 @@ CREATE TABLE `datajenisdaging` (
 --
 
 INSERT INTO `datajenisdaging` (`id`, `nama`) VALUES
-(3, 'Rendang');
+(3, 'Rendang'),
+(5, 'BBQ');
 
 -- --------------------------------------------------------
 
@@ -93,7 +104,8 @@ CREATE TABLE `datamerek` (
 
 INSERT INTO `datamerek` (`id`, `nama`) VALUES
 (1, 'nikooo'),
-(4, 'untaa');
+(4, 'untaa'),
+(5, 'slice yoshinoya');
 
 -- --------------------------------------------------------
 
@@ -184,25 +196,25 @@ ALTER TABLE `userpegawai`
 -- AUTO_INCREMENT for table `datacoldstorage`
 --
 ALTER TABLE `datacoldstorage`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `dataimportir`
 --
 ALTER TABLE `dataimportir`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `datajenisdaging`
 --
 ALTER TABLE `datajenisdaging`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `datamerek`
 --
 ALTER TABLE `datamerek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `useradmin`
