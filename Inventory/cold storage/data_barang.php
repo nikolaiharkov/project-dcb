@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <?php
+    include '../../database.php';
+    ?>
 
 <head>
 
@@ -20,6 +23,7 @@
 
     <!-- Custom styles for this page -->
     <link href="../../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -255,7 +259,17 @@
                         <form action="#">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Nama pengimpor</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <select  class="form-control js-example-basic-single" id="importir" name="importir" >
+                                <?php
+                                //get data from dataimportir table
+                                $query = "SELECT * FROM dataimportir";
+                                $result = mysqli_query($db, $query);
+                                foreach ($result as $row) {
+                                    echo "<option value='" . $row['id'] . "'>" . $row['nama'] . "</option>";
+                                }
+
+                                ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Merek</label>
@@ -326,4 +340,10 @@
 
 </body>
 
+
 </html>
+<script>
+           $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+        </script>  
