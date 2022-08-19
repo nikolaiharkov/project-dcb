@@ -1,7 +1,8 @@
-<!DOCTYPE html>
 <?php
 include '../../database.php';
 ?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,7 +31,6 @@ include '../../database.php';
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -103,7 +103,6 @@ include '../../database.php';
         </ul>
         <!-- End of Sidebar -->
 
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -169,59 +168,37 @@ include '../../database.php';
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Jenis daging</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Edit Jenis Daging</h1>
                     <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data jenis daging</h6>
-                            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <span class="text">Tambah Data</span>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th>Jenis daging</th>
-                                            <th>Action</th>
+                    <div class="card shadow mb-4 p-3">
+                        <!-- create form action proseseditpegawai.php method post -->
+                        <form action="proseseditjenisdaging.php" method="post">
+                            <?php
+                            //get id
+                            $id = $_GET['id'];
+                            //get data from dataimportir table
+                            $query = "SELECT * FROM datajenisdaging WHERE id = $id";
+                            $result = mysqli_query($db, $query);
+                            $row = mysqli_fetch_assoc($result);
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $query = "SELECT * FROM datajenisdaging";
-                                        $result = mysqli_query($db, $query);
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row['nama'] . "</td>";
-                                            echo "<td>";
-                                            echo "<a href='editjenisdaging.php?id=" . $row['id'] . "' class='btn btn-warning btn-circle btn-sm'>";
-                                            echo "<i class='fas fa-edit'></i>";
-                                            echo "</a>";
-                                            echo "&nbsp;";
-                                            echo "<a href='deletejenisdaging.php?id=" . $row['id'] . "' class='btn btn-danger btn-circle btn-sm'>";
-                                            echo "<i class='fas fa-trash'></i>";
-                                            echo "</a>";
-                                            echo "</td>";
-                                            echo "</tr>";
-                                        }
-                                            //
+                            //id input text
+                            echo "<input type='hidden' name='id' value='" . $row['id'] . "'hidden>";
+                            //input text with label nama
+                            echo "<div class='form-group'>";
+                            echo "<label for='nama'>Nama Jenis Daging</label>";
+                            echo "<input type='text' class='form-control' id='nama' name='nama' value='" . $row['nama'] . "'>";
+                            echo "</div>";
+                            //submit button
+                            echo "<button type='submit' class='btn btn-primary'>Simpan</button>";
+                            // cancel button
+                            echo "&nbsp;&nbsp;&nbsp;";
+                            echo "<a href='jenis_daging.php' class='btn btn-danger'>Batal</a>";
 
-                                            ?>
-                                        
-                                        
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
+                            ?>
+                        </form>
+                            
                     </div>
 
                 </div>
@@ -252,16 +229,16 @@ include '../../database.php';
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">jenis daging</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Input Importir</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="inputjenisdaging.php" method="post">
+                        <form action="inputimportir.php" method="post">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Jenis daging</label>
-                                <input type="text" name="namajenisdaging" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Nama Importir</label>
+                                <input type="text" name="namaimportir" class="form-control" id="recipient-name">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
