@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 include '../../database.php';
-
 ?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,7 +17,7 @@ include '../../database.php';
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../../assets/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
@@ -168,60 +168,37 @@ include '../../database.php';
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Merek daging</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Edit Merek</h1>
                     <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data merek daging</h6>
-                            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <span class="text">Tambah Data</span>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Merek daging</th>
-                                            <th>Action</th>
+                    <div class="card shadow mb-4 p-3">
+                        <!-- create form action proseseditpegawai.php method post -->
+                        <form action="proseseditmerek.php" method="post">
+                            <?php
+                            //get id
+                            $id = $_GET['id'];
+                            //get data from dataimportir table
+                            $query = "SELECT * FROM datamerek WHERE id = $id";
+                            $result = mysqli_query($db, $query);
+                            $row = mysqli_fetch_assoc($result);
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        //get data from datamerek
-                                        $query = "SELECT * FROM datamerek";
-                                        $result = mysqli_query($db, $query);
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row['nama'] . "</td>";
-                                            echo "<td>";
-                                            echo "<a href='editmerek.php?id=" . $row['id'] . "' class='btn btn-warning btn-circle btn-sm'>";
-                                                echo "<span class='icon text-white-50'>";
-                                                    echo "<i class='fas fa-edit'></i>";
-                                                echo "</span>";
-                                            echo "</a>";
-                                            echo "&nbsp;";
-                                            echo "<a href='deletemerek.php?id=" . $row['id'] . "' class='btn btn-danger btn-circle btn-sm'>";
-                                                echo "<span class='icon text-white-50'>";
-                                                    echo "<i class='fas fa-trash'></i>";
-                                                echo "</span>";
-                                            echo "</a>";
-                                            echo "</td>";
-                                            echo "</tr>";
+                            //id input text
+                            echo "<input type='hidden' name='id' value='" . $row['id'] . "'hidden>";
+                            //input text with label nama
+                            echo "<div class='form-group'>";
+                            echo "<label for='nama'>Nama Merek</label>";
+                            echo "<input type='text' class='form-control' id='nama' name='nama' value='" . $row['nama'] . "'>";
+                            echo "</div>";
+                            //submit button
+                            echo "<button type='submit' class='btn btn-primary'>Simpan</button>";
+                            // cancel button
+                            echo "&nbsp;&nbsp;&nbsp;";
+                            echo "<a href='merek.php' class='btn btn-danger'>Batal</a>";
 
-                                        }
-                                        ?>
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
+                            ?>
+                        </form>
+                            
                     </div>
 
                 </div>
@@ -252,16 +229,16 @@ include '../../database.php';
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Merek daging</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Input Importir</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="inputmerek.php" method="post">
+                        <form action="inputimportir.php" method="post">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Merek daging</label>
-                                <input type="text" class="form-control" name="nama" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Nama Importir</label>
+                                <input type="text" name="namaimportir" class="form-control" id="recipient-name">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
