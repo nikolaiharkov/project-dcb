@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include '../../database.php';
+?>
 <html lang="en">
 
 <head>
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>DCB - Inventory</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,9 +35,8 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">DCB - Inventory </div>
             </a>
 
             <!-- Divider -->
@@ -181,29 +183,40 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Jenis produksi</th>
+                                        <th>No</th>
+                                            <th>Jenis Produksi</th>
                                             <th>Action</th>
+
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td class="d-flex flex-row">
-                                                <a href="" class="btn btn-warning btn-sm mr-3">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i> Hapus
-                                                </a>
-                                            </td>
+                                        <?php
+                                        //no with looping
+                                        // take data from table data cold storage
+                                        $no = 1;
+                                        $query = "SELECT * FROM jenisproduksi";
+                                        $result = mysqli_query($db, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            ?>
+                                            <tr>
+                                            <td><?php echo $no++; ?></td>
+                                                <td><?php echo $row['nama']; ?></td>
+                                                <td>
+                                                    <?php
 
-                                        </tr>
-
+                                                    //class button Delete
+                                                    echo "<a href='deletejenisproduksi.php?id=" . $row['id'] . "' class='btn btn-danger btn-circle btn-sm'>
+                                                    <i class='fas fa-trash'></i>
+                                                    </a>";
+                                                    ?>
+                                                    </a>
+                                                    
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
 
@@ -242,16 +255,16 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nama</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Input Jenis Produksi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="#">
+                        <form action="inputjenisproduksi.php" method="post">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Jenis produksi</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="recipient-name" name="nama">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

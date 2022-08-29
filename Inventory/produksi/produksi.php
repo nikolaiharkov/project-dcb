@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>DCB - Inventory</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
     <!-- Custom fonts for this template-->
@@ -34,9 +34,8 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">DCB - Inventory </div>
             </a>
 
             <!-- Divider -->
@@ -217,8 +216,6 @@
                         </div>
                     </div>
 
-                    <h1 class="h3 mb-2 text-gray-800">Nilai assets</h1>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -247,7 +244,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nama</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Pilih Produksi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -255,6 +252,7 @@
                     <div class="modal-body">
                         <form action="#">
                             <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Pilih Produksi</label>
                                 <select id='myselect form-control'>
                                     <option>Option 1</option>
                                     <option>Option 2</option>
