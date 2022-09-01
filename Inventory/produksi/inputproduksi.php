@@ -27,6 +27,6 @@ if($result){
     $sql = "DELETE FROM datacoldstorage WHERE id = '$coldstorage'";
     $result = mysqli_query($db, $sql);
     if($result){
-        echo "<script>alert('Data berhasil dihapus'); window.location.href='produksi.php';</script>";
+        echo "<script>alert('Data berhasil di input'); window.location.href='produksi.php';</script>";
     }
 }
