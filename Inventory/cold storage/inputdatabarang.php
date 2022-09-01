@@ -1,16 +1,7 @@
 <?php
 include '../../database.php';
 
-// take operator
-// take importir
-// take merek
-// take jenis daging
-// take berat daging
-// take harga dasar
-// take foto
 
-//get timestamp from system jakarta time
-//asia/jakarta
 date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d H:i:s');
 

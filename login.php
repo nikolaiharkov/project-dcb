@@ -40,7 +40,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">DCB Management System</h1>
                                     </div>
                                     <!-- form action proses-login.php method post class user -->
-                                    <form action="proses-login.php" method="post" class="user">
+                                    <form action="proseslogin.php" method="post" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="username" aria-describedby="emailHelp" placeholder="masukkan username">
                                         </div>

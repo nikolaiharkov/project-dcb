@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include '../../database.php';
+?>
 <html lang="en">
 
 <head>
@@ -176,7 +179,7 @@
                                 <span class="icon text-white-50">
                                     <i class="fas fa-plus"></i>
                                 </span>
-                                <span class="text">Tambah Data</span>
+                                <span class="text">Tambah Produksi</span>
                             </a>
                         </div>
                         <div class="card-body">
@@ -185,29 +188,78 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Berat (kg)</th>
+                                            <th>Operator</th>
+                                            <th>Tanggal</th>
+                                            <th>Importir</th>
+                                            <th>Merek</th>
+                                            <th>Jenis Daging</th>
+                                            <th>Qty</th>
+                                            <th>Status</th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>System Architect</td>
-                                            <td class="d-flex flex-row">
-                                                <a href="" class="btn btn-success btn-sm mr-3">
-                                                    <i class="fa-regular fa-xmark"></i> Approve
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-close"></i> Reject
-                                                </a>
-                                            </td>
+                                   <?php
+                                      $sql = "SELECT * FROM tempcoldstorage";
+                                        $result = mysqli_query($db, $sql);
+                                        $no = 1;
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while($row = mysqli_fetch_assoc($result)) {
+                                                echo "<tr>";
+                                                echo "<td>".$no."</td>";
+                                                echo "<td>".$row['operator']."</td>";
+                                                echo "<td>".$row['tanggalwaktu']."</td>";
+                                                echo "<td>".$row['importir']."</td>";
+                                                echo "<td>".$row['merek']."</td>";
+                                                echo "<td>".$row['jenisdaging']."</td>";
+                                                echo "<td>".$row['qty']." Kg</td>";
 
-                                        </tr>
+                                                if($row['status'] == 0){
+                                                    echo "<td>Dalam Produksi</td>";
+                                                }elseif($row['status'] == 1){
+                                                    echo "<td>Menunggu Hasil Produksi</td>";
+                                                }else{
+                                                    echo "<td>Produksi Selesai</td>";
+                                                }
 
-                                    </tbody>
+                                                if($row['status'] == 0){
+                                                    echo "<td><a href='produksiselesai.php?id=".$row['id']."' class='btn btn-primary btn-icon-split'>
+                                                    <span class='icon text-white-50'>
+                                                        <i class='fas fa-check'></i>
+                                                    </span>
+                                                    <span class='text'>Selesai</span>
+                                                    </a>
+                                                    <a href='deleteproduksi.php?id=".$row['id']."' class='btn btn-danger btn-icon-split'>
+                                                    <span class='icon text-white-50'>
+                                                        <i class='fas fa-trash'></i>
+                                                    </span>
+                                                    <span class='text'>Hapus</span>
+                                                    </a></td>";
+                                                }elseif($row['status'] == 1){
+                                                    echo "<td><a href='inputhasilproduksi.php?id=".$row['id']."' class='btn btn-success btn-icon-split'>
+                                                    <span class='icon text-white-50'>
+                                                        <i class='fas fa-plus'></i>
+                                                    </span>
+                                                    <span class='text'>Input Hasil</span>
+                                                    </a>
+                                                    </td>";
+                                                }elseif($row['status'] == 2){
+                                                    echo "<td><a href='detailhasilproduksi.php?id=".$row['id']."' class='btn btn-warning btn-icon-split'>
+                                                    <span class='icon text-white-50'>
+                                                        <i class='fas fa-eye'></i>
+                                                    </span>
+                                                    <span class='text'>Lihat Detail</span>
+                                                    </a>
+                                                    </td>";
+                                                }
+                                                $no++;
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "0 results";
+                                        }
+
+                                   ?>
                                 </table>
 
 
@@ -250,21 +302,25 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="#">
+                        <form action="inputproduksi.php" method="post">
                             <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Pilih Produksi</label>
-                                <select id='myselect form-control'>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                <select id='myselect form-control' name="coldstorage">
+                                    <?php
+                                    //create option based on table datacoldstorage, option value is id and option text is importir, merek, jenisdaging, qty
+                                    $sql = "SELECT * FROM datacoldstorage";
+                                    $result = mysqli_query($db, $sql);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                       //put each row in ()
+                                        echo "<option value='" . $row['id'] . "'> (" . $row['importir'] . ") (" . $row['merek'] . ") (" . $row['jenisdaging'] . ") (" . $row['qty'] . "Kg)</option>";
+                                    }
+
+                                    ?>
 
 
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Berat (kg)</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
+                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>

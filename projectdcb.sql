@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2022 at 11:55 AM
+-- Generation Time: Sep 01, 2022 at 04:46 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -37,7 +37,7 @@ CREATE TABLE `datacoldstorage` (
   `hargadasar` float NOT NULL,
   `hargaaset` float NOT NULL,
   `operator` varchar(30) NOT NULL,
-  `foto` varchar(30) NOT NULL
+  `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -45,8 +45,7 @@ CREATE TABLE `datacoldstorage` (
 --
 
 INSERT INTO `datacoldstorage` (`id`, `tanggalwaktu`, `importir`, `merek`, `jenisdaging`, `qty`, `hargadasar`, `hargaaset`, `operator`, `foto`) VALUES
-(15, '2022-08-19 21:10:02', 'daging jaya sukses maju', 'slice yoshinoya', 'BBQ', 15.5, 1000, 15500, 'niko', 'Hak Akses.jpg'),
-(16, '2022-08-19 21:10:25', 'Instagram', 'untaa', 'Rendang', 9.5, 5000, 47500, 'niko', 'ky1.png');
+(15, '2022-08-19 21:10:02', 'daging jaya sukses maju', 'slice yoshinoya', 'BBQ', 15.5, 1000, 15500, 'niko', 'Hak Akses.jpg');
 
 -- --------------------------------------------------------
 
@@ -106,6 +105,53 @@ INSERT INTO `datamerek` (`id`, `nama`) VALUES
 (1, 'nikooo'),
 (4, 'untaa'),
 (5, 'slice yoshinoya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenisproduksi`
+--
+
+CREATE TABLE `jenisproduksi` (
+  `id` int(10) NOT NULL,
+  `nama` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jenisproduksi`
+--
+
+INSERT INTO `jenisproduksi` (`id`, `nama`) VALUES
+(3, 'ad'),
+(4, 'niko');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tempcoldstorage`
+--
+
+CREATE TABLE `tempcoldstorage` (
+  `id` int(10) NOT NULL,
+  `tanggalwaktu` varchar(30) NOT NULL,
+  `importir` varchar(30) NOT NULL,
+  `merek` varchar(30) NOT NULL,
+  `jenisdaging` varchar(30) NOT NULL,
+  `qty` float NOT NULL,
+  `hargadasar` float NOT NULL,
+  `hargaaset` float NOT NULL,
+  `operator` varchar(30) NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `status` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tempcoldstorage`
+--
+
+INSERT INTO `tempcoldstorage` (`id`, `tanggalwaktu`, `importir`, `merek`, `jenisdaging`, `qty`, `hargadasar`, `hargaaset`, `operator`, `foto`, `status`) VALUES
+(20, '2022-08-29 11:41:47', 'Facebook', 'nikooo', 'Rendang', 17.5, 1000, 17500, 'niko', 'Logo Teknologi & Gaming Ungu Modern.jpg', 1),
+(21, '2022-09-01 21:41:33', 'Facebook', 'nikooo', 'BBQ', 13.6, 20000, 272000, 'niko', 'ciawapp.png', 2);
 
 -- --------------------------------------------------------
 
@@ -177,6 +223,18 @@ ALTER TABLE `datamerek`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jenisproduksi`
+--
+ALTER TABLE `jenisproduksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tempcoldstorage`
+--
+ALTER TABLE `tempcoldstorage`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `useradmin`
 --
 ALTER TABLE `useradmin`
@@ -196,7 +254,7 @@ ALTER TABLE `userpegawai`
 -- AUTO_INCREMENT for table `datacoldstorage`
 --
 ALTER TABLE `datacoldstorage`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `dataimportir`
@@ -215,6 +273,18 @@ ALTER TABLE `datajenisdaging`
 --
 ALTER TABLE `datamerek`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `jenisproduksi`
+--
+ALTER TABLE `jenisproduksi`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tempcoldstorage`
+--
+ALTER TABLE `tempcoldstorage`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `useradmin`
