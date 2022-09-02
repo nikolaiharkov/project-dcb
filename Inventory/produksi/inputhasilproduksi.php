@@ -172,20 +172,30 @@ include '../../database.php';
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Input Hasil Produksi</h1>
                     <!-- DataTales Example -->
-                    <form>
+                    <form form action="proseshasilproduksi.php" method="post">
                         <div class="card shadow mb-4">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <label>Jenis produksi</label>
-                                        <input type="text" class="form-control" placeholder="Jenis produksi">
+                                        <!-- select option tag bootstrap -->
+                                        <select class="form-control" name="jenisproduksi">
+                                            <option value="">Pilih jenis produksi</option>
+                                            <?php
+                                            $query = "SELECT * FROM jenisproduksi";
+                                            $result = mysqli_query($koneksi, $query);
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
+                                            }
+                                            ?>
+                                    </select>
                                     </div>
                                     <div class="col">
-                                        <label>Qty</label>
+                                        <label>Pcs</label>
                                         <input type="text" class="form-control" placeholder="Qty">
                                     </div>
                                     <div class="col">
-                                        <label>Berat</label>
+                                        <label>Berat (per Kg)</label>
                                         <input type="text" class="form-control" placeholder="Berat">
                                     </div>
                                 </div>

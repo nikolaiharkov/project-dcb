@@ -223,20 +223,20 @@ include '../../database.php';
                                                 }
 
                                                 if($row['status'] == 0){
-                                                    echo "<td><a href='produksiselesai.php?id=".$row['id']."' class='btn btn-primary btn-icon-split'>
+                                                    echo "<td class='d-flex flex-row'><a href='produksiselesai.php?id=".$row['id']."' class='btn btn-primary btn-icon-split btn-sm mr-2'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-check'></i>
                                                     </span>
                                                     <span class='text'>Selesai</span>
                                                     </a>
-                                                    <a href='deleteproduksi.php?id=".$row['id']."' class='btn btn-danger btn-icon-split'>
+                                                    <a href='deleteproduksi.php?id=".$row['id']."' class='btn btn-danger btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-trash'></i>
                                                     </span>
                                                     <span class='text'>Hapus</span>
                                                     </a></td>";
                                                 }elseif($row['status'] == 1){
-                                                    echo "<td><a href='inputhasilproduksi.php?id=".$row['id']."' class='btn btn-success btn-icon-split'>
+                                                    echo "<td><a href='inputhasilproduksi.php?id=".$row['id']."' class='btn btn-success btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-plus'></i>
                                                     </span>
@@ -244,7 +244,7 @@ include '../../database.php';
                                                     </a>
                                                     </td>";
                                                 }elseif($row['status'] == 2){
-                                                    echo "<td><a href='detailhasilproduksi.php?id=".$row['id']."' class='btn btn-warning btn-icon-split'>
+                                                    echo "<td><a href='detailhasilproduksi.php?id=".$row['id']."' class='btn btn-warning btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-eye'></i>
                                                     </span>
