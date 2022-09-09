@@ -14,7 +14,6 @@ include '../../database.php';
 
     <title>DCB - Inventory</title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -22,8 +21,6 @@ include '../../database.php';
     <!-- Custom styles for this template-->
     <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this page -->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
 </head>
@@ -169,49 +166,108 @@ include '../../database.php';
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Input Hasil Produksi</h1>
                     <!-- DataTales Example -->
-                    <form form action="proseshasilproduksi.php" method="post">
-                        <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <label>Jenis produksi</label>
-                                        <!-- select option tag bootstrap -->
-                                        <select class="form-control" name="jenisproduksi">
-                                            <option value="">Pilih jenis produksi</option>
-                                            <?php
-                                            $query = "SELECT * FROM jenisproduksi";
-                                            $result = mysqli_query($koneksi, $query);
-                                            while ($row = mysqli_fetch_array($result)) {
-                                                echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
-                                            }
-                                            ?>
-                                    </select>
-                                    </div>
-                                    <div class="col">
-                                        <label>Pcs</label>
-                                        <input type="text" class="form-control" placeholder="Qty">
-                                    </div>
-                                    <div class="col">
-                                        <label>Berat (per Kg)</label>
-                                        <input type="text" class="form-control" placeholder="Berat">
-                                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary">Data hasil produksi</h6>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Jenis Produksi</th>
+                                            <th>Qty</th>
+                                            <th>Berat</th>
+                                            <th>Action</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        //get data from table temphasilproduksi
+                                        $query = mysqli_query($db, "SELECT * FROM temphasilproduksi");
+                                        while ($data = mysqli_fetch_array($query)) {
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><?php echo $data['jenisproduksi']; ?></td>
+                                                <td><?php echo $data['qty']; ?> Pcs</td>
+                                                <td><?php echo $data['berat']; ?> Kg</td>
+                                                <td>
+                                                    <a href="deleteinputhasilproduksi.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <h3 class="h3 mb-2 mt-5 text-gray-800">Tambah hasil produksi</h3>
+
+                            <form action="prosesinputhasilproduksi.php" method="post">
+                                <div class="form-group">
+                                    <label for="">Hasil produksi</label>
+                                    <?php
+                                    $query = "SELECT * FROM jenisproduksi";
+                                    $result = mysqli_query($db, $query);
+                                    //select option name jenisproduksi
+                                    //id = nama and show nama
+                                    echo "<select name='jenisproduksi' class='form-control'>";
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
+                                    }
+                                    echo "</select>";
+                                    ?>
                                 </div>
-                                <div id="addproduksirow"></div>
-                                <button type="button" class="btn btn-outline-primary btn-icon-split mt-3" id="addproduksi">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                    <span class="text">Tambah Produksi</span>
+                                <div class="form-group">
+                                    <label for="">Qty</label>
+                                    <input type="number" class="form-control" name="qty" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Berat (per Kg)</label>
+                                    <input type="text" class="form-control" name="berat" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">
+                                <span class="text">Tambah Item</span>
                                 </button>
+                            </form>
+
+                            
+                        </div>
+                    </div>
+
+
+
+                    <h3 class="h3 mb-2 mt-5 text-gray-800">Input sisa</h3>
+                    <form action="kalkulasihasilproduksi.php" method="post">
+                        <div class="card shadow">
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="">Jumlah sisa (per Kg)</label>
+                                    <input type="text" class="form-control" name="sisa" required>
+                                </div>
+                                <div class="form-group">
+                                    <?php
+                                    //input text with value get id hidden
+                                    $id = $_GET['id'];
+                                    echo "<input type='hidden' name='id' value='$id'>";
+                                    ?>
+                                </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary px-5 py-2">Simpan</button>
+                        <button type="submit" class="btn btn-primary mt-3">
+                            <span class="text">Simpan</span>
+                        </button>
                     </form>
-
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -219,7 +275,7 @@ include '../../database.php';
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white mt-4">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; <a href="harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
@@ -236,35 +292,21 @@ include '../../database.php';
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pilih Produksi</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Input Jenis Produksi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="inputproduksi.php" method="post">
+                        <form action="inputjenisproduksi.php" method="post">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Pilih Produksi</label>
-                                <select id='myselect form-control' name="coldstorage">
-                                    <?php
-                                    //create option based on table datacoldstorage, option value is id and option text is importir, merek, jenisdaging, qty
-                                    $sql = "SELECT * FROM datacoldstorage";
-                                    $result = mysqli_query($db, $sql);
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        //put each row in ()
-                                        echo "<option value='" . $row['id'] . "'> (" . $row['importir'] . ") (" . $row['merek'] . ") (" . $row['jenisdaging'] . ") (" . $row['qty'] . "Kg)</option>";
-                                    }
-
-                                    ?>
-
-
-                                </select>
+                                <label for="recipient-name" class="col-form-label">Jenis produksi</label>
+                                <input type="text" class="form-control" id="recipient-name" name="nama">
                             </div>
-
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -304,51 +346,19 @@ include '../../database.php';
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../js/demo/datatables-demo.js"></script>
-
     <script src="../../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 
     <!-- Core plugin JavaScript-->
     <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../js/sb-admin-2.min.js"></script>
+    <script src="../../assets/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../../assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-    <script>
-        $('select').select2({
-            width: '100%',
-            placeholder: "Select an Option",
-            allowClear: true
-        });
-
-        $("#addproduksi").click(function() {
-            var html = '';
-            html += `<div class="row mt-3">
-                                    <div class="col">
-                                        <label>Jenis produksi</label>
-                                        <input type="text" class="form-control" placeholder="Jenis produksi">
-                                    </div>
-                                    <div class="col">
-                                        <label>Qty</label>
-                                        <input type="text" class="form-control" placeholder="Qty">
-                                    </div>
-                                    <div class="col">
-                                        <label>Berat</label>
-                                        <input type="text" class="form-control" placeholder="Berat">
-                                    </div>
-                                </div>`;
-
-            $('#addproduksirow').append(html);
-        });
-    </script>
+    <script src="../../assets/js/demo/datatables-demo.js"></script>
 
 </body>
+
+</html>

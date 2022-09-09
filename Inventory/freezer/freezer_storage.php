@@ -1,5 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+include '../../database.php';
+?>
 
 <head>
 
@@ -9,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>DCB - INVENTORY</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,9 +39,8 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">DCB - Inventory</div>
             </a>
 
             <!-- Divider -->
@@ -178,51 +183,41 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
+                                            <th>Nama Produksi</th>
                                             <th>Berat (kg)</th>
+                                            <th>Pcs</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>System Architect</td>
-
-                                        </tr>
+                                        <?php
+                                        // take data from table freezerstorage
+                                        // explode string to array from table freezerstorage
+                                        $query = "SELECT * FROM freezerstorage";
+                                        $result = mysqli_query($db, $query);
+                                        $no = 1;
+                                        while ($row = mysqli_fetch_array($result)) {
+                                            $nama_produksi = $row['jenisproduksi'];
+                                            $berat = $row['berat'];
+                                            $pcs = $row['qty'];
+                                            $array_nama_produksi = explode(",", $nama_produksi);
+                                            $array_berat = explode(",", $berat);
+                                            $array_pcs = explode(",", $pcs);
+                                            for ($i = 0; $i < count($array_nama_produksi); $i++) {
+                                                echo "<tr>";
+                                                echo "<td>" . $no . "</td>";
+                                                echo "<td>" . $array_nama_produksi[$i] . "</td>";
+                                                echo "<td>" . $array_berat[$i] . "</td>";
+                                                echo "<td>" . $array_pcs[$i] . "</td>";
+                                                echo "</tr>";
+                                                $no++;
+                                            }
+                                        }
+                                        ?>
 
                                     </tbody>
                                 </table>
-                                <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Pengimpor</th>
-                                            <th>Action</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td class="d-flex flex-row">
-                                                <a href="" class="btn btn-warning btn-sm mr-3">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <a href="" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i> Hapus
-                                                </a>
-                                            </td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                    </tbody>
-
-                                </table> -->
+                                
                             </div>
                         </div>
                     </div>
@@ -294,5 +289,4 @@
     <script src="../../assets/js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>
