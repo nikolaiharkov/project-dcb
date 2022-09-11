@@ -19,10 +19,7 @@ $harga_aset = $harga_dasar * $berat_daging;
 
 
 $foto = $_FILES['foto']['name'];
-//only allow jpg, png, jpeg
-// file size less than 10mb
-// save file to ../../assets/img/coldstorage/
-$ekstensi_diperbolehkan	= array('png','jpg');
+$ekstensi_diperbolehkan	= array('png','jpg','jpeg','heic');
 $nama = $_FILES['foto']['name'];
 $x = explode('.', $nama);
 $ekstensi = strtolower(end($x));

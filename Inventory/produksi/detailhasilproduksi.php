@@ -1,8 +1,11 @@
+
+
 <!DOCTYPE html>
+<html lang="en">
+
 <?php
 include '../../database.php';
 ?>
-<html lang="en">
 
 <head>
 
@@ -12,7 +15,7 @@ include '../../database.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DCB - Inventory</title>
+    <title>DCB - INVENTORY</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +24,8 @@ include '../../database.php';
     <!-- Custom styles for this template-->
     <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
-
+    <!-- Custom styles for this page -->
+    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -29,13 +33,14 @@ include '../../database.php';
 
     <!-- Page Wrapper -->
     <div id="wrapper">
+
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                 </div>
-                <div class="sidebar-brand-text mx-3">DCB - Inventory </div>
+                <div class="sidebar-brand-text mx-3">DCB - Inventory</div>
             </a>
 
             <!-- Divider -->
@@ -70,7 +75,6 @@ include '../../database.php';
                     </div>
                 </div>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -79,8 +83,8 @@ include '../../database.php';
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="produksi.php">Data produksi</a>
-                        <a class="collapse-item" href="jenis_produksi.php">Jenis produksi</a>
+                        <a class="collapse-item" href="../produksi/produksi.php">Data produksi</a>
+                        <a class="collapse-item" href="../produksi/jenis_produksi.php">Jenis produksi</a>
                     </div>
                 </div>
             </li>
@@ -100,7 +104,6 @@ include '../../database.php';
 
         </ul>
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -166,10 +169,12 @@ include '../../database.php';
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Detail Hasil Produksi</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data hasil produksi</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Detail</h6>
 
                         </div>
                         <div class="card-body">
@@ -177,109 +182,99 @@ include '../../database.php';
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Jenis Produksi</th>
-                                            <th>Qty</th>
+                                            <th>Importir</th>
+                                            <th>Merek</th>
+                                            <th>Jenis Daging</th>
                                             <th>Berat</th>
-                                            <th>Action</th>
-
+                                            <th>Harga Per KG</th>
+                                            <th>Harga Total Aset</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $no = 1;
-                                        //get data from table temphasilproduksi
-                                        $query = mysqli_query($db, "SELECT * FROM temphasilproduksi");
-                                        while ($data = mysqli_fetch_array($query)) {
-                                        ?>
-                                            <tr>
-                                                <td><?php echo $no++; ?></td>
-                                                <td><?php echo $data['jenisproduksi']; ?></td>
-                                                <td><?php echo $data['qty']; ?> Pcs</td>
-                                                <td><?php echo $data['berat']; ?> Kg</td>
-                                                <td>
-                                                    
-                                                    <?php $idku = $_GET['id'];
-                                                    ?>
-                                                    <!-- delete button with id and idku as get -->
-                                                    <a href="deleteinputhasilproduksi.php?id=<?php echo $data['id']; ?>&idku=<?php echo $idku; ?>" class="btn btn-danger btn-sm">Delete</a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
+                                        //get data from table tempcoldstorage where id = id
+                                        //get id
+                                        $id = $_GET['id'];
+                                        $query = mysqli_query($db, "SELECT * FROM tempcoldstorage WHERE id = '$id'");
+                                        $row = mysqli_fetch_array($query);
+                                        
+                                        //show in table
+                                        echo "<tr>";
+                                        echo "<td>" . $row['importir'] . "</td>";
+                                        echo "<td>" . $row['merek'] . "</td>";
+                                        echo "<td>" . $row['jenisdaging'] . "</td>";
+                                        echo "<td>" . $row['qty'] . " Kg</td>";
+                                        echo "<td>Rp. " . $row['hargadasar'] . "</td>";
+                                        echo "<td>Rp. " . $row['hargaaset'] . "</td>";
+                                        echo "</tr>";
                                         ?>
                                     </tbody>
                                 </table>
-
+                                
                             </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary">Rincian Hasil</h6>
 
-                            <h3 class="h3 mb-2 mt-5 text-gray-800">Tambah hasil produksi</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <?php
+                                        $jenisproduksi = array();
+                                        $qtyhasil = array();
+                                        $berat = array();
+                                        $berat = array_unique($berat);
+                                        $query = mysqli_query($db, "SELECT * FROM tempcoldstorage WHERE id = '$id'");
+                                        $row = mysqli_fetch_array($query);
+                                        $jenisproduksi = explode(",", $row['jenisproduksi']);
+                                        $qtyhasil = explode(",", $row['qtyhasil']);
+                                        $berat = explode(",", $row['berat']);
+                                        echo "<tr>";
+                                        echo "<th></th>";
+                                        //if berat have same value just show one value
+                                        foreach ($berat as $key => $value) {
+                                            echo "<th>" . $value . " Kg</th>";
+                                        }
+                                        echo "</tr>";
+                                        echo "</thead>";
+                                        echo "<tbody>";
+                                        for ($i = 0; $i < count($jenisproduksi); $i++) {
+                                            echo "<tr>";
+                                            echo "<td>" . $jenisproduksi[$i] . "</td>";
+                                            for ($j = 0; $j < count($berat); $j++) {
+                                                if ($i == $j) {
+                                                    echo "<td>" . $qtyhasil[$j] . " Pcs</td>";
+                                                } else {
+                                                    echo "<td></td>";
+                                                }
+                                            }
+                                            echo "</tr>";
+                                        }
+                                        echo "</tbody>";
 
-                            <form action="prosesinputhasilproduksi.php" method="post">
-                                <div class="form-group">
-                                    <label for="">Hasil produksi</label>
+                                        ?>
+                                    
+                                </table>
+                                <h3>
                                     <?php
-                                    $query = "SELECT * FROM jenisproduksi";
-                                    $result = mysqli_query($db, $query);
-                                    //select option name jenisproduksi
-                                    //id = nama and show nama
-                                    echo "<select name='jenisproduksi' class='form-control'>";
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
-                                    }
-                                    echo "</select>";
-                                    ?>
-                                </div>
-                                <div class="form-group">
-                                    <?php
+                                    //get data from table tempcoldstorage where id = id
                                     //get id
-                                    $idku = $_GET['id'];
-                                    //input text with id as value
-                                    echo "<input type='hidden' name='idku' value='$idku'>";
+                                    $id = $_GET['id'];
+                                    $query = mysqli_query($db, "SELECT * FROM tempcoldstorage WHERE id = '$id'");
+                                    $row = mysqli_fetch_array($query);
+                                    //show 
+                                    echo "Nilai Asset Produksi : Rp. " . $row['totalassetfreezer'] . "";
                                     ?>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Qty</label>
-                                    <input type="number" class="form-control" name="qty" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Berat (per Kg)</label>
-                                    <input type="text" class="form-control" name="berat" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary mt-3">
-                                <span class="text">Tambah Item</span>
-                                </button>
-                            </form>
-
-                            
+                                </h3>
+                            </div>
                         </div>
                     </div>
 
-
-
-                    <h3 class="h3 mb-2 mt-5 text-gray-800">Input sisa</h3>
-                    <form action="kalkulasihasilproduksi.php" method="post">
-                        <div class="card shadow">
-                            <div class="card-body">
-
-                                <div class="form-group">
-                                    <label for="">Jumlah sisa (per Kg)</label>
-                                    <input type="text" class="form-control" name="sisa" required>
-                                </div>
-                                <div class="form-group">
-                                    <?php
-                                    //input text with value get id hidden
-                                    $id = $_GET['id'];
-                                    echo "<input type='hidden' name='id' value='$id'>";
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3">
-                            <span class="text">Simpan</span>
-                        </button>
-                    </form>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -287,7 +282,7 @@ include '../../database.php';
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white mt-4">
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; <a href="harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
@@ -301,34 +296,6 @@ include '../../database.php';
 
         </div>
         <!-- End of Content Wrapper -->
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Input Jenis Produksi</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="inputjenisproduksi.php" method="post">
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Jenis produksi</label>
-                                <input type="text" class="form-control" id="recipient-name" name="nama">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
     </div>
     <!-- End of Page Wrapper -->
@@ -367,10 +334,12 @@ include '../../database.php';
     <!-- Custom scripts for all pages-->
     <script src="../../assets/js/sb-admin-2.min.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="../../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../../assets/js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>

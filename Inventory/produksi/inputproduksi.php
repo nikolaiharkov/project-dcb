@@ -20,7 +20,12 @@ $hargaaset = $row['hargaaset'];
 $operator = $row['operator'];
 $foto = $row['foto'];
 
-$sql = "INSERT INTO tempcoldstorage (tanggalwaktu, importir, merek, jenisdaging, qty, hargadasar, hargaaset, operator, foto, status) VALUES ('$date', '$importir', '$merek', '$jenisdaging', '$qty', '$hargadasar', '$hargaaset', '$operator', '$foto', '$status')";
+$jenisproduk = "0";
+$qtyhasil = "0";
+$berat = "0";
+$totalassetfreezer = "0";
+
+$sql = "INSERT INTO tempcoldstorage (tanggalwaktu, importir, merek, jenisdaging, qty, hargadasar, hargaaset, operator, foto, status, jenisproduksi, qtyhasil, berat, totalassetfreezer) VALUES ('$date', '$importir', '$merek', '$jenisdaging', '$qty', '$hargadasar', '$hargaaset', '$operator', '$foto', '$status', '$jenisproduk', '$qtyhasil', '$berat', '$totalassetfreezer')";
 $result = mysqli_query($db, $sql);
 
 if($result){
