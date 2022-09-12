@@ -36,7 +36,7 @@ include '../../database.php';
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                
+
                 <div class="sidebar-brand-text mx-3">DCB - INVENTORY</div>
             </a>
 
@@ -147,7 +147,7 @@ include '../../database.php';
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../../assets/img/static/avatar1.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -198,7 +198,7 @@ include '../../database.php';
 
                             ?>
                         </form>
-                            
+
                     </div>
 
                 </div>
@@ -225,7 +225,7 @@ include '../../database.php';
 
 
         <!-- Modal -->
-        
+
 
     </div>
     <!-- End of Page Wrapper -->

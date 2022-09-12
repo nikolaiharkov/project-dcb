@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-    include '../../database.php';
-    ?>
+<?php
+include '../../database.php';
+?>
 
 <head>
 
@@ -36,7 +36,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                
+
                 <div class="sidebar-brand-text mx-3">DCB - INVENTORY</div>
             </a>
 
@@ -147,7 +147,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../../assets/img/static/avatar1.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -186,9 +186,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th>No</th>
+                                            <th>No</th>
                                             <th>Foto</th>
-                                            
+
                                             <th>Operator</th>
                                             <th>Tanggal</th>
                                             <th>Importir</th>
@@ -210,40 +210,40 @@
                                         $query = "SELECT * FROM datacoldstorage";
                                         $result = mysqli_query($db, $query);
                                         while ($row = mysqli_fetch_assoc($result)) {
-                                            ?>
+                                        ?>
                                             <tr>
-                                            <td><?php echo $no++; ?></td>
+                                                <td><?php echo $no++; ?></td>
                                                 <td><img src="../../assets/img/coldstorage/<?php echo $row['foto']; ?>" width="100" height="100"></td>
-                                                
+
                                                 <td><?php echo $row['operator']; ?></td>
                                                 <td><?php echo $row['tanggalwaktu']; ?></td>
                                                 <td><?php echo $row['importir']; ?></td>
                                                 <td><?php echo $row['merek']; ?></td>
                                                 <td><?php echo $row['jenisdaging']; ?></td>
-                                                <td><?php echo $row['qty']." Kg"; ?></td>
-                                                <td><?php 
-                                                //put Rp. and "." every 3 digit from total
-                                                echo "Rp. ".number_format($row['hargadasar'],0,',','.');
-                                                ?></td>
+                                                <td><?php echo $row['qty'] . " Kg"; ?></td>
                                                 <td><?php
-                                                echo "Rp. ".number_format($row['hargaaset'],0,',','.');
-                                                ?></td>
+                                                    //put Rp. and "." every 3 digit from total
+                                                    echo "Rp. " . number_format($row['hargadasar'], 0, ',', '.');
+                                                    ?></td>
+                                                <td><?php
+                                                    echo "Rp. " . number_format($row['hargaaset'], 0, ',', '.');
+                                                    ?></td>
                                                 <td>
                                                     <?php
-                                                   
+
                                                     //class button Delete
                                                     echo "<a href='deletedatabarang.php?id=" . $row['id'] . "' class='btn btn-danger btn-circle btn-sm'>
                                                     <i class='fas fa-trash'></i>
                                                     </a>";
                                                     ?>
                                                     </a>
-                                                    
+
                                                 </td>
                                             </tr>
                                         <?php } ?>
 
 
-                                        
+
 
                                     </tbody>
                                 </table>
@@ -252,15 +252,15 @@
                         </div>
                     </div>
 
-                    <h1 class="h3 mb-2 text-gray-800">Nilai Aset: <?php 
-                    //sum all hargaaset from table datacoldstorage and echo it
-                    $query = "SELECT SUM(hargaaset) AS total FROM datacoldstorage";
-                    $result = mysqli_query($db, $query);
-                    $row = mysqli_fetch_assoc($result);
-                    //put Rp. and "." every 3 digit from total
-                    echo "Rp. " . number_format($row['total'], 0, ".", ".");
-                    
-                    ?></h1>
+                    <h1 class="h3 mb-2 text-gray-800">Nilai Aset: <?php
+                                                                    //sum all hargaaset from table datacoldstorage and echo it
+                                                                    $query = "SELECT SUM(hargaaset) AS total FROM datacoldstorage";
+                                                                    $result = mysqli_query($db, $query);
+                                                                    $row = mysqli_fetch_assoc($result);
+                                                                    //put Rp. and "." every 3 digit from total
+                                                                    echo "Rp. " . number_format($row['total'], 0, ".", ".");
+
+                                                                    ?></h1>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -303,67 +303,67 @@
                                 // input text and show session username
                                 echo "<input type='text' class='form-control' id='exampleInputEmail1' aria-describedby='emailHelp' value='niko' name='operator' readonly>";
                                 ?>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nama Importir</label>
-                                <select  class="form-control js-example-basic-single" id="importir" name="importir" >
-                                <?php
-                                //get data from dataimportir table
-                                $query = "SELECT * FROM dataimportir";
-                                $result = mysqli_query($db, $query);
-                                foreach ($result as $row) {
-                                    echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
-                                }
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Nama Importir</label>
+                                    <select class="form-control js-example-basic-single" id="importir" name="importir">
+                                        <?php
+                                        //get data from dataimportir table
+                                        $query = "SELECT * FROM dataimportir";
+                                        $result = mysqli_query($db, $query);
+                                        foreach ($result as $row) {
+                                            echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
+                                        }
 
-                                ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nama Merek</label>
-                                <select  class="form-control js-example-basic-single" id="merek" name="merek" >
-                                <?php
-                                //get data from dataimportir table
-                                $query = "SELECT * FROM datamerek";
-                                $result = mysqli_query($db, $query);
-                                foreach ($result as $row) {
-                                    echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
-                                }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Nama Merek</label>
+                                    <select class="form-control js-example-basic-single" id="merek" name="merek">
+                                        <?php
+                                        //get data from dataimportir table
+                                        $query = "SELECT * FROM datamerek";
+                                        $result = mysqli_query($db, $query);
+                                        foreach ($result as $row) {
+                                            echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
+                                        }
 
-                                ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Jenis daging</label>
-                                <select  class="form-control js-example-basic-single" id="jenisdaging" name="jenisdaging" >
-                                <?php
-                                //get data from dataimportir table
-                                $query = "SELECT * FROM datajenisdaging";
-                                $result = mysqli_query($db, $query);
-                                foreach ($result as $row) {
-                                    echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
-                                }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Jenis daging</label>
+                                    <select class="form-control js-example-basic-single" id="jenisdaging" name="jenisdaging">
+                                        <?php
+                                        //get data from dataimportir table
+                                        $query = "SELECT * FROM datajenisdaging";
+                                        $result = mysqli_query($db, $query);
+                                        foreach ($result as $row) {
+                                            echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
+                                        }
 
-                                ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Berat daging</label>
-                                <!-- input float -->
-                                <input type="text" class="form-control" id="beratdaging" name="beratdaging" placeholder="Berat daging"required>
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Harga Dasar (per Kg)</label>
-                                <!-- input float -->
-                                <input type="text" class="form-control" id="hargadasar" name="hargadasar" placeholder="Harga Dasar"required>
-                            </div>
-                            <!-- input file -->
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Foto</label>
-                                <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto"required>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Berat daging</label>
+                                    <!-- input float -->
+                                    <input type="text" class="form-control" id="beratdaging" name="beratdaging" placeholder="Berat daging" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Harga Dasar (per Kg)</label>
+                                    <!-- input float -->
+                                    <input type="text" class="form-control" id="hargadasar" name="hargadasar" placeholder="Harga Dasar" required>
+                                </div>
+                                <!-- input file -->
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Foto</label>
+                                    <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
                         </form>
                     </div>
 
@@ -420,7 +420,7 @@
 
 </html>
 <script>
-           $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-        </script>  
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>

@@ -148,7 +148,7 @@ include '../../database.php';
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../../assets/img/static/avatar1.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -199,67 +199,67 @@ include '../../database.php';
 
                                         </tr>
                                     </thead>
-                                   <?php
-                                      $sql = "SELECT * FROM tempcoldstorage";
-                                        $result = mysqli_query($db, $sql);
-                                        $no = 1;
-                                        if (mysqli_num_rows($result) > 0) {
-                                            while($row = mysqli_fetch_assoc($result)) {
-                                                echo "<tr>";
-                                                echo "<td>".$no."</td>";
-                                                echo "<td>".$row['operator']."</td>";
-                                                echo "<td>".$row['tanggalwaktu']."</td>";
-                                                echo "<td>".$row['importir']."</td>";
-                                                echo "<td>".$row['merek']."</td>";
-                                                echo "<td>".$row['jenisdaging']."</td>";
-                                                echo "<td>".$row['qty']." Kg</td>";
+                                    <?php
+                                    $sql = "SELECT * FROM tempcoldstorage";
+                                    $result = mysqli_query($db, $sql);
+                                    $no = 1;
+                                    if (mysqli_num_rows($result) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<tr>";
+                                            echo "<td>" . $no . "</td>";
+                                            echo "<td>" . $row['operator'] . "</td>";
+                                            echo "<td>" . $row['tanggalwaktu'] . "</td>";
+                                            echo "<td>" . $row['importir'] . "</td>";
+                                            echo "<td>" . $row['merek'] . "</td>";
+                                            echo "<td>" . $row['jenisdaging'] . "</td>";
+                                            echo "<td>" . $row['qty'] . " Kg</td>";
 
-                                                if($row['status'] == 0){
-                                                    echo "<td>Dalam Produksi</td>";
-                                                }elseif($row['status'] == 1){
-                                                    echo "<td>Menunggu Hasil Produksi</td>";
-                                                }else{
-                                                    echo "<td>Produksi Selesai</td>";
-                                                }
+                                            if ($row['status'] == 0) {
+                                                echo "<td>Dalam Produksi</td>";
+                                            } elseif ($row['status'] == 1) {
+                                                echo "<td>Menunggu Hasil Produksi</td>";
+                                            } else {
+                                                echo "<td>Produksi Selesai</td>";
+                                            }
 
-                                                if($row['status'] == 0){
-                                                    echo "<td class='d-flex flex-row'><a href='produksiselesai.php?id=".$row['id']."' class='btn btn-primary btn-icon-split btn-sm mr-2'>
+                                            if ($row['status'] == 0) {
+                                                echo "<td class='d-flex flex-row'><a href='produksiselesai.php?id=" . $row['id'] . "' class='btn btn-primary btn-icon-split btn-sm mr-2'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-check'></i>
                                                     </span>
                                                     <span class='text'>Selesai</span>
                                                     </a>
-                                                    <a href='deleteproduksi.php?id=".$row['id']."' class='btn btn-danger btn-icon-split btn-sm'>
+                                                    <a href='deleteproduksi.php?id=" . $row['id'] . "' class='btn btn-danger btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-trash'></i>
                                                     </span>
                                                     <span class='text'>Hapus</span>
                                                     </a></td>";
-                                                }elseif($row['status'] == 1){
-                                                    echo "<td><a href='inputhasilproduksi.php?id=".$row['id']."' class='btn btn-success btn-icon-split btn-sm'>
+                                            } elseif ($row['status'] == 1) {
+                                                echo "<td><a href='inputhasilproduksi.php?id=" . $row['id'] . "' class='btn btn-success btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-plus'></i>
                                                     </span>
                                                     <span class='text'>Input Hasil</span>
                                                     </a>
                                                     </td>";
-                                                }elseif($row['status'] == 2){
-                                                    echo "<td><a href='detailhasilproduksi.php?id=".$row['id']."' class='btn btn-warning btn-icon-split btn-sm'>
+                                            } elseif ($row['status'] == 2) {
+                                                echo "<td><a href='detailhasilproduksi.php?id=" . $row['id'] . "' class='btn btn-warning btn-icon-split btn-sm'>
                                                     <span class='icon text-white-50'>
                                                         <i class='fas fa-eye'></i>
                                                     </span>
                                                     <span class='text'>Lihat Detail</span>
                                                     </a>
                                                     </td>";
-                                                }
-                                                $no++;
-                                                echo "</tr>";
                                             }
-                                        } else {
-                                            echo "0 results";
+                                            $no++;
+                                            echo "</tr>";
                                         }
+                                    } else {
+                                        echo "0 results";
+                                    }
 
-                                   ?>
+                                    ?>
                                 </table>
 
 
@@ -304,14 +304,14 @@ include '../../database.php';
                     <div class="modal-body">
                         <form action="inputproduksi.php" method="post">
                             <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Pilih Produksi</label>
+                                <label for="recipient-name" class="col-form-label">Pilih Produksi</label>
                                 <select id='myselect form-control' name="coldstorage">
                                     <?php
                                     //create option based on table datacoldstorage, option value is id and option text is importir, merek, jenisdaging, qty
                                     $sql = "SELECT * FROM datacoldstorage";
                                     $result = mysqli_query($db, $sql);
                                     while ($row = mysqli_fetch_array($result)) {
-                                       //put each row in ()
+                                        //put each row in ()
                                         echo "<option value='" . $row['id'] . "'> (" . $row['importir'] . ") (" . $row['merek'] . ") (" . $row['jenisdaging'] . ") (" . $row['qty'] . "Kg)</option>";
                                     }
 
@@ -320,7 +320,7 @@ include '../../database.php';
 
                                 </select>
                             </div>
-                            
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>

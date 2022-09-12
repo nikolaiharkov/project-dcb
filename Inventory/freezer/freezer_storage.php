@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -148,7 +146,7 @@ include '../../database.php';
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../../assets/img/static/avatar1.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -175,6 +173,12 @@ include '../../database.php';
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Data freezer storage</h6>
+                            <a href="#" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-info-circle"></i>
+                                </span>
+                                <span class="text">Sisa barang</span>
+                            </a>
 
                         </div>
                         <div class="card-body">
@@ -217,7 +221,7 @@ include '../../database.php';
 
                                     </tbody>
                                 </table>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -243,6 +247,32 @@ include '../../database.php';
 
         </div>
         <!-- End of Content Wrapper -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Input Importir</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="inputimportir.php" method="post">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nama Importir</label>
+                                <input type="text" name="namaimportir" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- End of Page Wrapper -->
@@ -289,4 +319,5 @@ include '../../database.php';
     <script src="../../assets/js/demo/datatables-demo.js"></script>
 
 </body>
+
 </html>

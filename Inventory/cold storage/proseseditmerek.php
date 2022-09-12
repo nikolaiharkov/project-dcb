@@ -9,8 +9,8 @@ $id = $_POST['id'];
 
 //update name by id to dataimportir
 $sql = "UPDATE datamerek SET nama = '$nama' WHERE id = $id";
-if($db->query($sql) === TRUE){
+if ($db->query($sql) === TRUE) {
     echo "<script>alert('data berhasil diubah'); window.location.href='merek.php';</script>";
-}else{
+} else {
     echo "<script>alert('data gagal diubah'); window.location.href='merek.php';</script>";
 }
