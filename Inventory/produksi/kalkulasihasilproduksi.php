@@ -1,6 +1,11 @@
 <?php
 include '../../database.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('anda harus login terlebih dahulu'); window.location.href='../../login.php';</script>";
+}
+
 // calculate all qty from table temphasilproduksi
 $sql = "SELECT SUM(qty) AS totalqty FROM temphasilproduksi";
 $result = mysqli_query($db, $sql);

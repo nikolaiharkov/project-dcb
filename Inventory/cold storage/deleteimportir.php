@@ -1,6 +1,10 @@
 <?php
 include '../../database.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('anda harus login terlebih dahulu'); window.location.href='../../login.php';</script>";
+}
 //get id
 $id = $_GET['id'];
 //delete data from dataimportir where id = $id

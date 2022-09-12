@@ -1,6 +1,11 @@
 <?php
 include '../../database.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('anda harus login terlebih dahulu'); window.location.href='../../login.php';</script>";
+}
+
 //get data from username, password, role
 $username = $_POST['username'];
 $password = $_POST['password'];

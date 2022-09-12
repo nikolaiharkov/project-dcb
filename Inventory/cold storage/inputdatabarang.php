@@ -1,6 +1,11 @@
 <?php
 include '../../database.php';
 
+session_start();
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('anda harus login terlebih dahulu'); window.location.href='../../login.php';</script>";
+}
+
 
 date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d H:i:s');

@@ -49,7 +49,7 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <select class="form-control select" id="exampleFormControlSelect1">
+                                            <select name="login" class="form-control select" id="exampleFormControlSelect1" >
                                                 <!-- create option for admin, inventory and POS -->
                                                 <option value="admin">Admin</option>
                                                 <option value="inventory">Inventory</option>
