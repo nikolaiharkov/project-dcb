@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
-include '../../database.php';
-
+include '../database.php';
 ?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,14 +16,14 @@ include '../../database.php';
     <title>DCB - INVENTORY</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../../assets/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -64,10 +64,10 @@ include '../../database.php';
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="importir.php">Importir</a>
-                        <a class="collapse-item" href="merek.php">Merek</a>
-                        <a class="collapse-item" href="jenis_daging.php">Jenis daging</a>
-                        <a class="collapse-item" href="data_barang.php">Data barang</a>
+                        <a class="collapse-item" href="cold storage/importir.php">Importir</a>
+                        <a class="collapse-item" href="cold storage/merek.php">Merek</a>
+                        <a class="collapse-item" href="cold storage/jenis_daging.php">Jenis daging</a>
+                        <a class="collapse-item" href="cold storage/data_barang.php">Data barang</a>
 
                     </div>
                 </div>
@@ -81,8 +81,8 @@ include '../../database.php';
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="../produksi/produksi.php">Data produksi</a>
-                        <a class="collapse-item" href="../produksi/jenis_produksi.php">Jenis produksi</a>
+                        <a class="collapse-item" href="produksi/produksi.php">Data produksi</a>
+                        <a class="collapse-item" href="produksi/jenis_produksi.php">Jenis produksi</a>
                     </div>
                 </div>
             </li>
@@ -90,7 +90,7 @@ include '../../database.php';
 
 
             <li class="nav-item">
-                <a class="nav-link" href="../freezer/freezer_storage.php">
+                <a class="nav-link" href="freezer/freezer_storage.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Freezer storage</span></a>
             </li>
@@ -147,11 +147,11 @@ include '../../database.php';
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="../../assets/img/static/avatar1.png">
+                                <img class="img-profile rounded-circle" src="../assets/img/static/avatar1.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="../forogotpassword.php">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Ubah Password
                                 </a>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -169,56 +169,26 @@ include '../../database.php';
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Merek daging</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Ubah password</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">Data merek daging</h6>
-                            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <span class="text">Tambah Data</span>
-                            </a>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Merek daging</th>
-                                            <th>Action</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        //get data from datamerek
-                                        $query = "SELECT * FROM datamerek";
-                                        $result = mysqli_query($db, $query);
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row['nama'] . "</td>";
-                                            echo "<td>";
-                                            echo "<a href='editmerek.php?id=" . $row['id'] . "' class='btn btn-warning btn-circle btn-sm'>";
-                                            echo "<span class='icon text-white-50'>";
-                                            echo "<i class='fas fa-edit'></i>";
-                                            echo "</span>";
-                                            echo "</a>";
-                                            echo "&nbsp;";
-                                            echo "<a href='deletemerek.php?id=" . $row['id'] . "' class='btn btn-danger btn-circle btn-sm'>";
-                                            echo "<span class='icon text-white-50'>";
-                                            echo "<i class='fas fa-trash'></i>";
-                                            echo "</span>";
-                                            echo "</a>";
-                                            echo "</td>";
-                                            echo "</tr>";
-                                        }
-                                        ?>
-
-                                    </tbody>
-                                </table>
-
+                                <form action="#">
+                                    <div class="form-group">
+                                        <label>Password lama</label>
+                                        <input type="text" class="form-control" placeholder="Input password lama anda">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password Baru</label>
+                                        <input type="text" class="form-control" placeholder="Input password baru anda">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Konfirmasi password</label>
+                                        <input type="text" class="form-control" placeholder="Input ulang password baru">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -245,33 +215,6 @@ include '../../database.php';
         </div>
         <!-- End of Content Wrapper -->
 
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Merek daging</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="inputmerek.php" method="post">
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Merek daging</label>
-                                <input type="text" class="form-control" name="nama" id="recipient-name">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
     </div>
     <!-- End of Page Wrapper -->
@@ -301,21 +244,17 @@ include '../../database.php';
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../assets/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../../assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../../assets/js/demo/datatables-demo.js"></script>
+    <script src="../assets/js/demo/datatables-demo.js"></script>
 
 </body>
 
