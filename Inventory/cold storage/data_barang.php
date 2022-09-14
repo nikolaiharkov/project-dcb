@@ -193,7 +193,6 @@ if (!isset($_SESSION['username'])) {
                                         <tr>
                                             <th>No</th>
                                             <th>Foto</th>
-
                                             <th>Operator</th>
                                             <th>Tanggal</th>
                                             <th>Importir</th>

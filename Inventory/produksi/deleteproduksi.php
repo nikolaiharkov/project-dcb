@@ -23,8 +23,8 @@ $jenisdaging = $row['jenisdaging'];
 $qty = $row['qty'];
 $hargadasar = $row['hargadasar'];
 $hargaaset = $row['hargaaset'];
-$operator = $row['operator'];
 $foto = $row['foto'];
+$operator = $_SESSION['username'];
 
 //insert into table datacoldstorage
 $sql = "INSERT INTO datacoldstorage (tanggalwaktu, importir, merek, jenisdaging, qty, hargadasar, hargaaset, operator, foto) VALUES ('$date', '$importir', '$merek', '$jenisdaging', '$qty', '$hargadasar', '$hargaaset', '$operator', '$foto')";

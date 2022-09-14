@@ -261,6 +261,33 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
 
+                    <!-- create card -->
+                    <h3 class="h3 mb-2 mt-5 text-gray-800">Data Sisa</h3>
+                    <!-- create label -->
+                    <label for="">*) Sisa Wajib Digunakan</label>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Data Sisa</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Jenis Produksi</th>
+                                            <th>Berat</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
 
 
                     <h3 class="h3 mb-2 mt-5 text-gray-800">Input sisa</h3>
@@ -268,9 +295,22 @@ if (!isset($_SESSION['username'])) {
                         <div class="card shadow">
                             <div class="card-body">
 
+                                <!-- create input select option -->
+                                <div class="form-group">
+                                    <label for="">Jenis Produksi</label>
+                                    <?php
+                                    $query = "SELECT * FROM jenisproduksi";
+                                    $result = mysqli_query($db, $query);
+                                    echo "<select name='jenisproduksisisa' class='form-control'>";
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        echo "<option value='" . $row['nama'] . "'>" . $row['nama'] . "</option>";
+                                    }
+                                    echo "</select>";
+                                    ?>
+
                                 <div class="form-group">
                                     <label for="">Jumlah sisa (per Kg)</label>
-                                    <input type="text" class="form-control" name="sisa" required>
+                                    <input type="text" class="form-control" name="jumlahsisa" required>
                                 </div>
                                 <div class="form-group">
                                     <?php

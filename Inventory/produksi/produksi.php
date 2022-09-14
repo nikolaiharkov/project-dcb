@@ -193,6 +193,7 @@ if (!isset($_SESSION['username'])) {
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Foto</th>
                                             <th>Operator</th>
                                             <th>Tanggal</th>
                                             <th>Importir</th>
@@ -212,6 +213,7 @@ if (!isset($_SESSION['username'])) {
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             echo "<tr>";
                                             echo "<td>" . $no . "</td>";
+                                            echo "<td><img src='../../assets/img/produksi/" . $row['foto'] . "' width='100px' height='100px'></td>";
                                             echo "<td>" . $row['operator'] . "</td>";
                                             echo "<td>" . $row['tanggalwaktu'] . "</td>";
                                             echo "<td>" . $row['importir'] . "</td>";
@@ -307,7 +309,7 @@ if (!isset($_SESSION['username'])) {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="inputproduksi.php" method="post">
+                        <form action="inputproduksi.php" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Pilih Produksi</label>
                                 <select id='myselect form-control' name="coldstorage">
@@ -327,8 +329,8 @@ if (!isset($_SESSION['username'])) {
                             </div>
 
                             <div class="form-group">
-                                <label>Image</label>
-                                <input type="file" class="form-control">
+                                <label>Masukkan Foto Saat Produksi</label>
+                                <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto" required>
                             </div>
 
                             <div class="modal-footer">

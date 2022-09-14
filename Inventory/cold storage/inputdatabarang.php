@@ -10,9 +10,11 @@ if (!isset($_SESSION['username'])) {
 date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d H:i:s');
 
+//operator = session username
+$operator = $_SESSION['username'];
+
 // change comma from berat_daging to dot
 $berat_daging = str_replace(',', '.', $_POST['beratdaging']);
-$operator = $_POST['operator'];
 $importir = $_POST['importir'];
 $merek = $_POST['merek'];
 $jenis_daging = $_POST['jenisdaging'];
@@ -24,7 +26,7 @@ $harga_aset = $harga_dasar * $berat_daging;
 
 
 $foto = $_FILES['foto']['name'];
-$ekstensi_diperbolehkan	= array('png','jpg','jpeg','heic');
+$ekstensi_diperbolehkan	= array('png','jpg','jpeg','heic','heif');
 $nama = $_FILES['foto']['name'];
 $x = explode('.', $nama);
 $ekstensi = strtolower(end($x));

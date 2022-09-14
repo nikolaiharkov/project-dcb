@@ -9,8 +9,9 @@ if (!isset($_SESSION['username'])) {
 $status = 1;
 //get id
 $id = $_GET['id'];
+$operator = $_SESSION['username'];
 
-$sql = "UPDATE tempcoldstorage SET status = '$status' WHERE id = '$id'";
+$sql = "UPDATE tempcoldstorage SET status = '$status', operator = '$operator' WHERE id = '$id'";
 $result = mysqli_query($db, $sql);
 if($result){
     echo "<script>alert('Data berhasil di update'); window.location.href='produksi.php';</script>";

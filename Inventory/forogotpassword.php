@@ -179,18 +179,10 @@ if (!isset($_SESSION['username'])) {
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <label>Password lama</label>
-                                        <input type="text" class="form-control" placeholder="Input password lama anda">
-                                    </div>
+                                <form action="prosesforogotpassword.php" method="post">
                                     <div class="form-group">
                                         <label>Password Baru</label>
-                                        <input type="text" class="form-control" placeholder="Input password baru anda">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Konfirmasi password</label>
-                                        <input type="text" class="form-control" placeholder="Input ulang password baru">
+                                        <input type="password" class="form-control" placeholder="Input password baru anda" name="password">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </form>
