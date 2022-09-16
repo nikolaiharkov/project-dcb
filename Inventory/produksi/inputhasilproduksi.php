@@ -20,7 +20,7 @@ if (!isset($_SESSION['username'])) {
     <title>DCB - Inventory</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -355,7 +355,7 @@ if (!isset($_SESSION['username'])) {
             <footer class="sticky-footer bg-white mt-4">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
+                        <span>Copyright &copy; <a href="http://harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
                         <script>
                             document.write(new Date().getFullYear())
                         </script>

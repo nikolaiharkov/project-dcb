@@ -21,7 +21,7 @@ if (!isset($_SESSION['username'])) {
     <title>DCB - INVENTORY</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -250,7 +250,7 @@ if (!isset($_SESSION['username'])) {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
+                        <span>Copyright &copy; <a href="http://harkovnet.manhost.my.id">powered by HARKOVNET</a></span>
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
@@ -266,13 +266,13 @@ if (!isset($_SESSION['username'])) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Input Importir</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Input Data Keluar</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="inputimportir.php" method="post">
+                        <form action="proseskeluar.php" method="post">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Nama Importir</label>
                                 <input type="text" name="namaimportir" class="form-control" id="recipient-name">
