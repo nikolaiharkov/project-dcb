@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2022 at 10:18 AM
+-- Generation Time: Sep 16, 2022 at 11:33 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -51,6 +51,13 @@ CREATE TABLE `dataimportir` (
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `dataimportir`
+--
+
+INSERT INTO `dataimportir` (`id`, `nama`) VALUES
+(1, 'Facebook');
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +68,13 @@ CREATE TABLE `datajenisdaging` (
   `id` int(10) NOT NULL,
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `datajenisdaging`
+--
+
+INSERT INTO `datajenisdaging` (`id`, `nama`) VALUES
+(1, 'BBQ');
 
 -- --------------------------------------------------------
 
@@ -73,6 +87,13 @@ CREATE TABLE `datamerek` (
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `datamerek`
+--
+
+INSERT INTO `datamerek` (`id`, `nama`) VALUES
+(1, 'Bubage beef');
+
 -- --------------------------------------------------------
 
 --
@@ -83,9 +104,16 @@ CREATE TABLE `freezerstorage` (
   `id` int(11) NOT NULL,
   `jenisproduksi` varchar(100) NOT NULL,
   `qty` varchar(100) NOT NULL,
-  `berat` varchar(100) NOT NULL,
-  `totalassetfreezer` varchar(50) NOT NULL
+  `berat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `freezerstorage`
+--
+
+INSERT INTO `freezerstorage` (`id`, `jenisproduksi`, `qty`, `berat`) VALUES
+(98, 'Daging Giling', '19', '1'),
+(99, 'Rendang', '1', '0.5');
 
 -- --------------------------------------------------------
 
@@ -98,6 +126,16 @@ CREATE TABLE `jenisproduksi` (
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `jenisproduksi`
+--
+
+INSERT INTO `jenisproduksi` (`id`, `nama`) VALUES
+(1, 'Rendang'),
+(2, 'Daging Giling'),
+(3, 'Knuckle'),
+(4, 'slice yoshinoya');
+
 -- --------------------------------------------------------
 
 --
@@ -107,8 +145,15 @@ CREATE TABLE `jenisproduksi` (
 CREATE TABLE `sisa` (
   `id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `jumlahsisa` double NOT NULL
+  `jumlahsisa` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sisa`
+--
+
+INSERT INTO `sisa` (`id`, `nama`, `jumlahsisa`) VALUES
+(55, 'Daging Giling', 0.2);
 
 -- --------------------------------------------------------
 
@@ -131,8 +176,15 @@ CREATE TABLE `tempcoldstorage` (
   `jenisproduksi` varchar(100) NOT NULL,
   `qtyhasil` varchar(100) NOT NULL,
   `berat` varchar(100) NOT NULL,
-  `totalassetfreezer` varchar(50) NOT NULL
+  `totalassetfreezer` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tempcoldstorage`
+--
+
+INSERT INTO `tempcoldstorage` (`id`, `tanggalwaktu`, `importir`, `merek`, `jenisdaging`, `qty`, `hargadasar`, `hargaaset`, `operator`, `foto`, `status`, `jenisproduksi`, `qtyhasil`, `berat`, `totalassetfreezer`) VALUES
+(1, '2022-09-16 10:44:31', 'Facebook', 'Bubage beef', 'BBQ', 20, 90000, 1800000, 'admin', 'fabio.jpg', 2, 'Daging Giling, Rendang', '19, 1', '1, 0.5', '1800000');
 
 -- --------------------------------------------------------
 
@@ -144,7 +196,8 @@ CREATE TABLE `temphasilproduksi` (
   `id` int(11) NOT NULL,
   `jenisproduksi` varchar(50) NOT NULL,
   `qty` int(30) NOT NULL,
-  `berat` float NOT NULL
+  `berat` float NOT NULL,
+  `totalberat` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -159,6 +212,13 @@ CREATE TABLE `useradmin` (
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `useradmin`
+--
+
+INSERT INTO `useradmin` (`id`, `username`, `password`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
 -- --------------------------------------------------------
 
 --
@@ -170,6 +230,13 @@ CREATE TABLE `userpegawai` (
   `username` varchar(30) NOT NULL,
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `userpegawai`
+--
+
+INSERT INTO `userpegawai` (`id`, `username`, `password`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 --
 -- Indexes for dumped tables
@@ -249,49 +316,49 @@ ALTER TABLE `userpegawai`
 -- AUTO_INCREMENT for table `datacoldstorage`
 --
 ALTER TABLE `datacoldstorage`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `dataimportir`
 --
 ALTER TABLE `dataimportir`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `datajenisdaging`
 --
 ALTER TABLE `datajenisdaging`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `datamerek`
 --
 ALTER TABLE `datamerek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `freezerstorage`
 --
 ALTER TABLE `freezerstorage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `jenisproduksi`
 --
 ALTER TABLE `jenisproduksi`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sisa`
 --
 ALTER TABLE `sisa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `tempcoldstorage`
 --
 ALTER TABLE `tempcoldstorage`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `temphasilproduksi`
@@ -303,13 +370,13 @@ ALTER TABLE `temphasilproduksi`
 -- AUTO_INCREMENT for table `useradmin`
 --
 ALTER TABLE `useradmin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `userpegawai`
 --
 ALTER TABLE `userpegawai`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
