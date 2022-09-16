@@ -6,120 +6,133 @@ if (!isset($_SESSION['username'])) {
     echo "<script>alert('anda harus login terlebih dahulu'); window.location.href='../../login.php';</script>";
 }
 
-//get session
 $username = $_SESSION['username'];
-//get id
+//id with post
+$id = $_POST['id'];
+date_default_timezone_set('Asia/Jakarta');
 
-
-//get data from table sisa
+//get table sisa, if table sisa is null do operation, else do operation
 $sql = "SELECT * FROM sisa";
-$result = $db->query($sql);
-$datasisa = $result->fetch_assoc();
-
-//if table sisa is null then
-if($datasisa == null){
+$result = mysqli_query($db, $sql);
+$row = mysqli_fetch_array($result);
+if($row == null){
     
-    $id = $_GET['id'];
-
-//get data from table tempcoldstorage where id is id
-$sql = "SELECT * FROM tempcoldstorage WHERE id = '$id'";
-$result = $db->query($sql);
-$data = $result->fetch_assoc();
-// get qty
-$qty = $data['qty'];
-//get hargadasar
-$hargadasar = $data['hargadasar'];
-
-// totalmodalawal = qty * hargadasar
-$totalmodalawal = $qty * $hargadasar;
-
-//sum all qty from table temphasilproduksi
-$sql = "SELECT SUM(qty) AS totalqty FROM temphasilproduksi";
-$result = $db->query($sql);
-$data = $result->fetch_assoc();
-$totalqty = $data['totalqty'];
-
-// get sisa from post
-$sisa = $_POST['sisa'];
-
-// totalberatproduksi = totalqty + sisa
-$totalberatproduksi = $totalqty + $sisa;
-
-// selisih = totalberatproduksi - qty
-$selisih = $totalberatproduksi - $qty;
-
-//hargaselisih = selisih * hargadasar
-$hargaselisih = $selisih * $hargadasar;
-
-//lanjutan = hargaselisih / totalberatproduksi
-$lanjutan = $hargaselisih / $totalberatproduksi;
-
-// modalterbaru = hargadasar + lanjutan
-$modalterbaru = $hargadasar + $lanjutan;
-
-//totalassetbaru = modalterbaru * totalberatproduksi
-$totalassetbaru = $modalterbaru * $totalberatproduksi;
-    
-    $sql = "SELECT * FROM freezerstorage";
-    $result = $db->query($sql);
-    $datafreezerstorage = $result->fetch_assoc();
-
-    //get temphasilproduksi
-    $sql = "SELECT * FROM temphasilproduksi";
-    $result = $db->query($sql);
-    $datatemphasilproduksi = $result->fetch_assoc();
-
-    //if jenisproduksi from freezerstorage and berat dont have same value then insert copy data from temphasilproduki to freezerstorage
-    //if jenisproduksi from freezerstorage and berat have same value, then sum qty from temphasilproduksi and update qty from freezerstorage
-    if($datafreezerstorage['jenisproduksi'] != $datatemphasilproduksi['jenisproduksi'] && $datafreezerstorage['berat'] != $datatemphasilproduksi['berat']){
-        $sql = "INSERT INTO freezerstorage (jenisproduksi, qty, berat) VALUES ('$datatemphasilproduksi[jenisproduksi]', '$datatemphasilproduksi[qty]', '$datatemphasilproduksi[berat]')";
-        $result = mysqli_query($db, $sql);
+$sql = "SELECT * FROM temphasilproduksi";
+foreach($db->query($sql) as $row){
+    $jenisproduksi = $row['jenisproduksi'];
+    $qty = $row['qty'];
+    $berat = $row['berat'];
+    //if jenisproduksi and berat from temphasilproduksi is not have same value with jenisproduksi and berat from freezerstorage then insert data to freezerstorage
+    $sql2 = "SELECT * FROM freezerstorage WHERE jenisproduksi = '$jenisproduksi' AND berat = '$berat'";
+    if($db->query($sql2)->num_rows == 0){
+        $sql3 = "INSERT INTO freezerstorage (jenisproduksi, qty, berat) VALUES ('$jenisproduksi', '$qty', '$berat')";
+        $db->query($sql3);
     }else{
-        $sql = "UPDATE freezerstorage SET qty = qty + '$datatemphasilproduksi[qty]' WHERE jenisproduksi = '$datatemphasilproduksi[jenisproduksi]' AND berat = '$datatemphasilproduksi[berat]'";
-        $result = mysqli_query($db, $sql);
+        //if jenisproduksi and berat from temphasilproduksi is have same value with jenisproduksi and berat from freezerstorage then update qty from freezerstorage
+        $sql4 = "UPDATE freezerstorage SET qty = qty + '$qty' WHERE jenisproduksi = '$jenisproduksi' AND berat = '$berat'";
+        $db->query($sql4);
     }
+}
 
+//get hargaaset from table tempcoldstorage where id = $id
+$sql5 = "SELECT * FROM tempcoldstorage WHERE id = '$id'";
+foreach($db->query($sql5) as $row){
+    $qty = $row['qty'];
+    $hargadasar = $row['hargadasar'];
 
-    //get data from table temphasilproduksi
-    $sql = "SELECT * FROM temphasilproduksi";
-    $result = $db->query($sql);
-    $data = $result->fetch_assoc();
-    //get jenisproduksi, berat, qty from temphasilproduksi
-    $jenisproduksi = $data['jenisproduksi'];
-    $berat = $data['berat'];
-    $qty = $data['qty'];
-    //implode array to string and update to tempcoldstorage
-    $jenisproduksi = implode(", ", $jenisproduksi);
-    $berat = implode(", ", $berat);
-    $qty = implode(", ", $qty);
-    //update to tempcoldstorage where id is id
-    $sql = "UPDATE tempcoldstorage SET jenisproduksi = '$jenisproduksi', berat = '$berat', qty = '$qty' WHERE id = '$id'";
-    $result = $db->query($sql);
+}
+
+//sum totalberat from table temphasilproduksi
+$sql6 = "SELECT SUM(totalberat) AS totalberat FROM temphasilproduksi";
+$result = $db->query($sql6);
+$row = $result->fetch_assoc();
+$totalberat = $row['totalberat'];
+
+$jenisproduksisisa = $_POST['jenisproduksisisa'];
+$jumlahsisa = $_POST['jumlahsisa'];
+$jumlahsisa = str_replace(',', '.', $jumlahsisa);
+    //if there is coma in jumlahsisa, then replace it with dot
+
+    //totalberatproduksi = totalqty + jumlahsisa
+    $totalberatproduksi = $totalberat + $jumlahsisa;
+
+    // selisih = totalberatproduksi - qty
+    $selisih = $qty - $totalberatproduksi;
     
-    //update $totalassetbaru to table tempcoldstorage where id
-    $sql = "UPDATE tempcoldstorage SET totalassetfreezer = '$totalassetbaru' WHERE id = '$id'";
-    $result = $db->query($sql);
+    //hargaselisih = selisih * hargadasar
+    $hargaselisih = $selisih * $hargadasar;
+    
+    //lanjutan = hargaselisih / totalberatproduksi
+    $lanjutan = $hargaselisih / $totalberatproduksi;
+    
+    // modalterbaru = hargadasar + lanjutan
+    $modalterbaru = $hargadasar + $lanjutan;
+    
+    //totalassetbaru = modalterbaru * totalberatproduksi
+    $totalassetbaru = $modalterbaru * $totalberatproduksi;
 
-    //get sisa from post
-    $sisa = $_POST['jumlahsisa'];
-    $jenisproduksisa = $_POST['jenisproduksisisa'];
+//update totalassetbaru to table tempcoldstorage where id = $id
+$sql7 = "UPDATE tempcoldstorage SET totalassetfreezer = '$totalassetbaru' WHERE id = '$id'";
+$db->query($sql7);
 
-    //insert to table sisa
-    $sql = "INSERT INTO sisa (nama, jumlahsisa) VALUES ('$jenisproduksisa', '$sisa')";
-    $result = $db->query($sql);
+//insert jenisproduksisisa and jumlahsisa to table sisa nama, jumlahsisa
+$sql8 = "INSERT INTO sisa (nama, jumlahsisa) VALUES ('$jenisproduksisisa', '$jumlahsisa')";
+$db->query($sql8);
 
-    if($result){
-        $status = "2";
-        //update status to table tempcoldstorage where id is id
-        $sql = "UPDATE tempcoldstorage SET status = '$status' WHERE id = '$id'";
-        $result = $db->query($sql);
+//select jenisproduksi from table temphasilproduksi, and implode it with coma
+$sql9 = "SELECT * FROM temphasilproduksi";
+//result
+$result = $db->query($sql9);
+$jenisproduksi = array();
+while($row = $result->fetch_assoc()){
+    $jenisproduksi[] = $row['jenisproduksi'];
+}
+$jenisproduksi = implode(', ', $jenisproduksi);
 
-        $sql = "TRUNCATE TABLE temphasilproduksi";
-        $result = $db->query($sql);
-        echo "<script>alert('Data berhasil di input'); window.location.href='produksi.php?id=$id';</script>";
-    }
+//select qty from table temphasilproduksi, and implode it with coma
+$sql10 = "SELECT * FROM temphasilproduksi";
+//result
+$result = $db->query($sql10);
+$qty = array();
+while($row = $result->fetch_assoc()){
+    $qty[] = $row['qty'];
+}
+$qty = implode(', ', $qty);
 
+//select berat from table temphasilproduksi, and implode it with coma
+$sql11 = "SELECT * FROM temphasilproduksi";
+//result
+$result = $db->query($sql11);
+$berat = array();
+while($row = $result->fetch_assoc()){
+    $berat[] = $row['berat'];
+}
+$berat = implode(', ', $berat);
 
+//insert jenisproduksi, qty, berat to tempcoldstorage jenisproduksi, qtyhasil, berat
+$sql12 = "UPDATE tempcoldstorage SET jenisproduksi = '$jenisproduksi', qtyhasil = '$qty', berat = '$berat' WHERE id = '$id'";
+$db->query($sql12);
+
+//update status to 2 from table tempcoldstorage where id = $id
+$sql13 = "UPDATE tempcoldstorage SET status = '2' WHERE id = '$id'";
+$db->query($sql13);
+
+//update operator to $operator from table tempcoldstorage where id = $id
+//get operator from session
+$operator = $_SESSION['username'];
+$sql14 = "UPDATE tempcoldstorage SET operator = '$operator' WHERE id = '$id'";
+$db->query($sql14);
+
+//get tanggalwaktu with timezone jakarta and update to table tempcoldstorage where id = $id
+$tanggalwaktu = date('Y-m-d H:i:s');
+$sql15 = "UPDATE tempcoldstorage SET tanggalwaktu = '$tanggalwaktu' WHERE id = '$id'";
+$db->query($sql15);
+
+//trancate table temphasilproduksi if all operation is done
+$sql16 = "TRUNCATE TABLE temphasilproduksi";
+$db->query($sql16);
+
+echo "<script>alert('Data berhasil di input');window.location.href='produksi.php';</script>";
 }else{
-echo "<script>alert('Data gagal, ada kesalahan'); window.location.href='inputhasilproduksi.php?id=$id';</script>";
+    echo "<script>alert('Data gagal di input');window.location.href='produksi.php';</script>";
 }

@@ -10,8 +10,11 @@ $status = 1;
 //get id
 $id = $_GET['id'];
 $operator = $_SESSION['username'];
+date_default_timezone_set('Asia/Jakarta');
+$date = date('Y-m-d H:i:s');
 
-$sql = "UPDATE tempcoldstorage SET status = '$status', operator = '$operator' WHERE id = '$id'";
+
+$sql = "UPDATE produksi SET status = '$status', operator = '$operator', tanggalwaktu = '$date' WHERE id = $id";
 $result = mysqli_query($db, $sql);
 if($result){
     echo "<script>alert('Data berhasil di update'); window.location.href='produksi.php';</script>";

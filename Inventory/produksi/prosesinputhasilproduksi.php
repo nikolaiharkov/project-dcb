@@ -14,9 +14,13 @@ $id = $_POST['idku'];
 
 //if there is found any coma in berat, replace it with dot
 $berat = str_replace(",", ".", $berat);
+$totalberat = $qty * $berat;
+$totalberat = str_replace(",", ".", $totalberat);
+
+
 
 //insert into table temphasilproduksi
-$sql = "INSERT INTO temphasilproduksi (jenisproduksi, qty, berat) VALUES ('$jenisproduksi', '$qty', '$berat')";
+$sql = "INSERT INTO temphasilproduksi (jenisproduksi, qty, berat, totalberat) VALUES ('$jenisproduksi', '$qty', '$berat', '$totalberat')";
 $result = mysqli_query($db, $sql);
 //show message "Data berhasil disimpan" if success
 if ($result) {

@@ -182,7 +182,7 @@ if (!isset($_SESSION['username'])) {
                                 <span class="icon text-white-50">
                                     <i class="fas fa-info-circle"></i>
                                 </span>
-                                <span class="text">Sisa barang</span>
+                                <span class="text">Input Data Keluar</span>
                             </a>
 
                         </div>
@@ -216,8 +216,8 @@ if (!isset($_SESSION['username'])) {
                                                 echo "<tr>";
                                                 echo "<td>" . $no . "</td>";
                                                 echo "<td>" . $array_nama_produksi[$i] . "</td>";
-                                                echo "<td>" . $array_berat[$i] . "</td>";
-                                                echo "<td>" . $array_pcs[$i] . "</td>";
+                                                echo "<td>" . $array_berat[$i] . " Kg</td>";
+                                                echo "<td>" . $array_pcs[$i] . " Pcs</td>";
                                                 echo "</tr>";
                                                 $no++;
                                             }
@@ -226,7 +226,16 @@ if (!isset($_SESSION['username'])) {
 
                                     </tbody>
                                 </table>
-
+                                <h3>
+                                    <?php
+                                    //sum all totalassetfreezer from table tempcoldstorage and show it in money format
+                                    $query = "SELECT SUM(totalassetfreezer) AS total FROM tempcoldstorage";
+                                    $result = mysqli_query($db, $query);
+                                    $row = mysqli_fetch_array($result);
+                                    $total = $row['total'];
+                                    echo "Total Asset Freezer : Rp. " . number_format($total, 0, ',', '.');
+                                    ?>
+                                </h3>
                             </div>
                         </div>
                     </div>

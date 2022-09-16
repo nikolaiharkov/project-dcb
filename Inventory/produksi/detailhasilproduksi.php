@@ -270,8 +270,8 @@ if (!isset($_SESSION['username'])) {
                                     $id = $_GET['id'];
                                     $query = mysqli_query($db, "SELECT * FROM tempcoldstorage WHERE id = '$id'");
                                     $row = mysqli_fetch_array($query);
-                                    //show 
-                                    echo "Nilai Asset Produksi : Rp. " . $row['totalassetfreezer'] . "";
+                                    //show in money format
+                                    echo "Total Harga Hasil Produksi : Rp. " . number_format($row['totalassetfreezer'], 0, ',', '.');
                                     ?>
                                 </h3>
                             </div>

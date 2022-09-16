@@ -281,7 +281,27 @@ if (!isset($_SESSION['username'])) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        <?php
+                                        $no = 1;
+                                        //get data from table sisa
+                                        $query = mysqli_query($db, "SELECT * FROM sisa");
+                                        while ($data = mysqli_fetch_array($query)) {
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><?php echo $data['nama']; ?></td>
+                                                <td><?php echo $data['jumlahsisa']; ?> Kg</td>
+                                                <td>
+                                                    
+                                                    <!-- delete button with id and idku as get -->
+                                                    <a href="deletesisa.php?id=<?php echo $data['id']; ?>&idku=<?php echo $idku; ?>" class="btn btn-danger btn-sm">Gunakan Sisa</a>
+                                                    
+
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
