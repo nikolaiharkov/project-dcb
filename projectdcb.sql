@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2022 at 11:33 AM
+-- Generation Time: Sep 18, 2022 at 10:34 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -51,13 +51,6 @@ CREATE TABLE `dataimportir` (
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `dataimportir`
---
-
-INSERT INTO `dataimportir` (`id`, `nama`) VALUES
-(1, 'Facebook');
-
 -- --------------------------------------------------------
 
 --
@@ -68,13 +61,6 @@ CREATE TABLE `datajenisdaging` (
   `id` int(10) NOT NULL,
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `datajenisdaging`
---
-
-INSERT INTO `datajenisdaging` (`id`, `nama`) VALUES
-(1, 'BBQ');
 
 -- --------------------------------------------------------
 
@@ -87,12 +73,23 @@ CREATE TABLE `datamerek` (
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `datamerek`
+-- Table structure for table `freezerkeluar`
 --
 
-INSERT INTO `datamerek` (`id`, `nama`) VALUES
-(1, 'Bubage beef');
+CREATE TABLE `freezerkeluar` (
+  `id` int(11) NOT NULL,
+  `tanggalwaktu` varchar(30) NOT NULL,
+  `jenisproduksi` varchar(30) NOT NULL,
+  `berat` float NOT NULL,
+  `operator` varchar(30) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
+  `modal` int(10) NOT NULL,
+  `qty` int(10) NOT NULL,
+  `foto` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -107,14 +104,6 @@ CREATE TABLE `freezerstorage` (
   `berat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `freezerstorage`
---
-
-INSERT INTO `freezerstorage` (`id`, `jenisproduksi`, `qty`, `berat`) VALUES
-(98, 'Daging Giling', '19', '1'),
-(99, 'Rendang', '1', '0.5');
-
 -- --------------------------------------------------------
 
 --
@@ -125,16 +114,6 @@ CREATE TABLE `jenisproduksi` (
   `id` int(10) NOT NULL,
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `jenisproduksi`
---
-
-INSERT INTO `jenisproduksi` (`id`, `nama`) VALUES
-(1, 'Rendang'),
-(2, 'Daging Giling'),
-(3, 'Knuckle'),
-(4, 'slice yoshinoya');
 
 -- --------------------------------------------------------
 
@@ -147,13 +126,6 @@ CREATE TABLE `sisa` (
   `nama` varchar(50) NOT NULL,
   `jumlahsisa` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sisa`
---
-
-INSERT INTO `sisa` (`id`, `nama`, `jumlahsisa`) VALUES
-(55, 'Daging Giling', 0.2);
 
 -- --------------------------------------------------------
 
@@ -178,13 +150,6 @@ CREATE TABLE `tempcoldstorage` (
   `berat` varchar(100) NOT NULL,
   `totalassetfreezer` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tempcoldstorage`
---
-
-INSERT INTO `tempcoldstorage` (`id`, `tanggalwaktu`, `importir`, `merek`, `jenisdaging`, `qty`, `hargadasar`, `hargaaset`, `operator`, `foto`, `status`, `jenisproduksi`, `qtyhasil`, `berat`, `totalassetfreezer`) VALUES
-(1, '2022-09-16 10:44:31', 'Facebook', 'Bubage beef', 'BBQ', 20, 90000, 1800000, 'admin', 'fabio.jpg', 2, 'Daging Giling, Rendang', '19, 1', '1, 0.5', '1800000');
 
 -- --------------------------------------------------------
 
@@ -267,6 +232,12 @@ ALTER TABLE `datamerek`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `freezerkeluar`
+--
+ALTER TABLE `freezerkeluar`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `freezerstorage`
 --
 ALTER TABLE `freezerstorage`
@@ -316,49 +287,55 @@ ALTER TABLE `userpegawai`
 -- AUTO_INCREMENT for table `datacoldstorage`
 --
 ALTER TABLE `datacoldstorage`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dataimportir`
 --
 ALTER TABLE `dataimportir`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `datajenisdaging`
 --
 ALTER TABLE `datajenisdaging`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `datamerek`
 --
 ALTER TABLE `datamerek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `freezerkeluar`
+--
+ALTER TABLE `freezerkeluar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `freezerstorage`
 --
 ALTER TABLE `freezerstorage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jenisproduksi`
 --
 ALTER TABLE `jenisproduksi`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sisa`
 --
 ALTER TABLE `sisa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tempcoldstorage`
 --
 ALTER TABLE `tempcoldstorage`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `temphasilproduksi`

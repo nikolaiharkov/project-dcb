@@ -233,11 +233,87 @@ if (!isset($_SESSION['username'])) {
                                     $result = mysqli_query($db, $query);
                                     $row = mysqli_fetch_array($result);
                                     $total = $row['total'];
-                                    echo "Total Asset Freezer : Rp. " . number_format($total, 0, ',', '.');
+
+                                    //sum all modal from freezerkeluar as modalkeluar
+                                    $query = "SELECT SUM(modal) AS modal FROM freezerkeluar";
+                                    $result = mysqli_query($db, $query);
+                                    $row = mysqli_fetch_array($result);
+                                    $modalkeluar = $row['modal'];
+
+                                    //substract total and modalkeluar
+                                    $totalmodal = $total - $modalkeluar;
+                                    echo "Total Modal : Rp. " . number_format($totalmodal, 0, ',', '.');
+
                                     ?>
                                 </h3>
                             </div>
                         </div>
+                        
+                    </div>
+
+                </div>
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary">Data Barang Keluar</h6>
+                            
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Foto</th>
+                                            <th>Operator</th>
+                                            <th>Tanggal</th>
+                                            <th>Jenis Produksi</th>
+                                            <th>Berat</th>
+                                            <th>Jumlah Pcs</th>
+                                            <th>Modal Keluar</th>
+                                            <th>Keterangan</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        //get data from table freezerkeluar
+                                        $query = "SELECT * FROM freezerkeluar";
+                                        $result = mysqli_query($db, $query);
+                                        $no = 1;
+                                        //loop for no
+                                        while ($row = mysqli_fetch_array($result)) {
+                                            $foto = $row['foto'];
+                                            $operator = $row['operator'];
+                                            $tanggal = $row['tanggalwaktu'];
+                                            $jenisproduksi = $row['jenisproduksi'];
+                                            $berat = $row['berat'];
+                                            $qty = $row['qty'];
+                                            $modal = $row['modal'];
+                                            $keterangan = $row['keterangan'];
+                                            echo "<tr>";
+                                            echo "<td>" . $no . "</td>";
+                                            echo "<td><img src='../../assets/img/freezer/" . $foto . "' width='100px' height='100px'></td>";
+                                            echo "<td>" . $operator . "</td>";
+                                            echo "<td>" . $tanggal . "</td>";
+                                            echo "<td>" . $jenisproduksi . "</td>";
+                                            echo "<td>" . $berat . " Kg</td>";
+                                            echo "<td>" . $qty . " Pcs</td>";
+                                            echo "<td>Rp. " . number_format($modal, 0, ',', '.') . "</td>";
+                                            echo "<td>" . $keterangan . "</td>";
+                                            echo "</tr>";
+                                            $no++;
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -272,11 +348,44 @@ if (!isset($_SESSION['username'])) {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="proseskeluar.php" method="post">
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nama Importir</label>
-                                <input type="text" name="namaimportir" class="form-control" id="recipient-name">
-                            </div>
+                        <form action="proseskeluar.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Input Foto</label>
+                                    <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Pilih Item</label>
+                                <?php
+                                //select option from table freezerstorage
+                                $query = "SELECT * FROM freezerstorage";
+                                $result = mysqli_query($db, $query);
+                                //select option name is item
+                                echo "<select name='jenisproduksi' class='form-control'>";
+                                while ($row = mysqli_fetch_array($result)) {
+                                    //echo option value jenisproduksi from table freezerstorage
+                                    echo "<option value='" . $row['jenisproduksi'] . "'>" . $row['jenisproduksi'] . "</option>";
+                                }
+                                echo "</select>";
+                                ?>
+                                </div>
+                                <!-- input form for berat -->
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Berat (kg)</label>
+                                    <input type="number" class="form-control" id="berat" name="berat" placeholder="Berat" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Jumlah Pcs</label>
+                                    <input type="number" class="form-control" id="pcs" name="pcs" placeholder="Jumlah Pcs" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Modal Per Kg</label>
+                                    <input type="number" class="form-control" id="modal" name="modal" placeholder="Modal per Kg" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Keterangan</label>
+                                    <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan" required>
+                                </div>
+                                   
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -331,6 +440,13 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Page level custom scripts -->
     <script src="../../assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $('select').select2({
+            width: '100%',
+            placeholder: "Select an Option",
+            allowClear: true
+        });
+    </script>
 
 </body>
 
