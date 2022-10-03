@@ -330,7 +330,7 @@ if (!isset($_SESSION['username'])) {
 
                                 <div class="form-group">
                                     <label for="">Jumlah sisa (per Kg)</label>
-                                    <input type="text" class="form-control" name="jumlahsisa" required>
+                                    <input type="text" class="form-control" name="jumlahsisa" value="0">
                                 </div>
                                 <div class="form-group">
                                     <?php
