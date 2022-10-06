@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 include '../database.php';
 
 session_start();
@@ -19,9 +19,8 @@ if (!isset($_SESSION['username'])) {
 
     <title>DCB - ADMIN</title>
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Custom fonts for this template-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -42,7 +41,7 @@ if (!isset($_SESSION['username'])) {
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                
+
                 <div class="sidebar-brand-text mx-3">DCB - ADMIN</div>
             </a>
 
@@ -67,6 +66,18 @@ if (!isset($_SESSION['username'])) {
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Data Pegawai & Admin</span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../pos/penjualan/penjualan.php">
+                    <i class="fa-solid fa-money-bill"></i>
+                    <span>Penjualan</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../pos/laporan/laporanpenjualan.php">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Laporan penjualan</span></a>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -128,7 +139,7 @@ if (!isset($_SESSION['username'])) {
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="../../Inventory/logout.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
@@ -194,7 +205,7 @@ if (!isset($_SESSION['username'])) {
                                             $jumlah = $row['jumlah'];
                                             //show
                                             echo "<div class='h5 mb-0 font-weight-bold text-gray-800'>$jumlah</div>";
-                                            
+
 
                                             ?>
                                         </div>
